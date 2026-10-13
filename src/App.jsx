@@ -114,7 +114,7 @@ function HeroSection() {
       <div className="container hero-content">
         <div className="hero-copy">
           <p className="hero-kicker"><span /> 서울·수도권 24시 긴급 출동</p>
-          <h1>막힌 곳은 시원하게,<br /><em>견적은 투명하게.</em></h1>
+          <h1><span className="hero-slogan-line">막힌 곳은 시원하게,</span><br /><em>견적은 투명하게.</em></h1>
           <p className="hero-description">
             갑작스러운 배관 문제, 원인부터 꼼꼼히 확인하고<br className="desktop-break" />
             필요한 작업만 정직하게 안내해드립니다.
