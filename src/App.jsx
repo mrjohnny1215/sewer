@@ -168,7 +168,7 @@ function TransparencyNotice() {
           <div className="notice-icon"><ShieldCheck size={30} /></div>
           <p className="eyebrow">HONEST SERVICE PROMISE</p>
           <h2>불안한 추가 요금,<br />해냄설비에는 없습니다.</h2>
-          <p className="notice-copy">작업 전 충분히 설명하고, 동의하신 범위 안에서만 작업합니다. 해결되지 않은 문제에 대해서는 비용을 청구하지 않습니다.</p>
+          <p className="notice-copy">작업 전 충분히 설명하고, 동의하신 범위 안에서만 작업합니다.<br />해결되지 않은 문제에 대해서는 비용을 청구하지 않습니다.</p>
           <CallLink className="text-link">부담 없이 먼저 상담하기 <ArrowRight size={16} /></CallLink>
         </div>
         <div className="promise-list">
