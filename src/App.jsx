@@ -143,7 +143,7 @@ function ServiceList() {
   return (
     <section className="section section-services" id="services">
       <div className="container">
-        <SectionHeading eyebrow="OUR SERVICES" title={<>집 안의 배관 문제,<br className="mobile-break" /> 한 번에 해결하세요</>} description="막힘부터 누수까지, 현장에 맞는 방법으로 꼼꼼하게 작업합니다." />
+        <SectionHeading eyebrow="OUR SERVICES" title={<>집 안의 배관 문제,<br className="mobile-break" /> 한 번에 해결하세요</>} description={<>막힘부터 누수까지, 현장에 맞는 방법으로<br />꼼꼼하게 작업합니다.</>} />
         <div className="service-grid">
           {services.map(({ title, desc, icon: Icon }, index) => (
             <article className="service-card" key={title}>
