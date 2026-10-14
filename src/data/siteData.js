@@ -85,7 +85,7 @@ export const process = [
   {
     step: 1,
     title: '접수',
-    desc: '증상과 주소, 방문 가능한 시간을 확인합니다.',
+    desc: ['증상과 주소, 방문 가능한 시간을', '확인합니다.'],
     icon: PhoneCall,
   },
   {
@@ -103,7 +103,7 @@ export const process = [
   {
     step: 4,
     title: '책임시공',
-    desc: '합의한 범위대로 시공하고 작동 상태를 확인합니다.',
+    desc: ['합의한 범위대로 시공하고', '작동 상태를 확인합니다.'],
     icon: Wrench,
   },
 ]

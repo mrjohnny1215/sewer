@@ -190,13 +190,13 @@ function WorkProcess() {
   return (
     <section className="section section-process" id="process">
       <div className="container">
-        <SectionHeading eyebrow="HOW WE WORK" title="상담부터 마무리까지, 투명하게" description="어떤 작업을 하는지, 비용은 얼마인지 먼저 확인하실 수 있습니다." />
+        <SectionHeading eyebrow="HOW WE WORK" title={<>상담부터 마무리까지,<br />투명하게</>} description={<>어떤 작업을 하는지, 비용은 얼마인지<br />먼저 확인하실 수 있습니다.</>} />
         <div className="process-grid">
           {process.map(({ step, title, desc, icon: Icon }, index) => (
             <article className="process-card" key={title}>
               <div className="process-top"><span>STEP 0{step}</span><Icon size={22} /></div>
               <div className="process-marker"><span>{String(step).padStart(2, '0')}</span>{index < process.length - 1 && <i />}</div>
-              <h3>{title}</h3><p>{desc}</p>
+              <h3>{title}</h3><p>{Array.isArray(desc) ? desc.map((line) => <span className="process-desc-line" key={line}>{line}</span>) : desc}</p>
             </article>
           ))}
         </div>
@@ -209,7 +209,7 @@ function FeatureStrengths() {
   return (
     <section className="section section-strengths">
       <div className="container">
-        <SectionHeading eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description="작은 불편도 내 집처럼 살피고, 약속한 작업을 책임감 있게 마무리합니다." />
+        <SectionHeading eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description={<>작은 불편도 내 집처럼 살피고, 약속한 작업을<br />책임감 있게 마무리합니다.</>} />
         <div className="strength-grid">
           {strengths.map(({ title, desc, icon: Icon }, index) => (
             <article className="strength-card" key={title}>
