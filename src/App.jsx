@@ -134,15 +134,20 @@ function Hero() {
     <section id="home" className="overflow-hidden bg-[#07182a] pb-5 pt-2 sm:px-6 sm:pb-8 sm:pt-6">
       <div className="mx-auto max-w-5xl">
         <div className="overflow-hidden bg-[#07182a] shadow-xl sm:rounded-2xl sm:border sm:border-slate-200">
-          <img
-            src="/img/hero_banner.png"
-            alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
-            width="2752"
-            height="1536"
-            fetchPriority="high"
-            decoding="async"
-            className="mx-auto block h-auto w-full max-w-lg object-contain sm:max-w-full"
-          />
+          <div className="hero-banner relative">
+            <img
+              src="/img/hero_banner.png"
+              alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
+              width="1024"
+              height="572"
+              fetchPriority="high"
+              decoding="async"
+              className="mx-auto block h-auto w-full max-w-lg object-contain sm:max-w-full"
+            />
+            <span className="hero-title-motion" aria-hidden="true">
+              {'해냄설비'.split('').map((letter, index) => <span key={letter} style={{ animationDelay: `${index * 380}ms` }}>{letter}</span>)}
+            </span>
+          </div>
         </div>
         <DispatchBoard />
       </div>
@@ -341,7 +346,7 @@ function MobileActionBar() {
 export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white pb-28 font-sans text-slate-900 md:pb-0">
-      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes timerFlash{0%,100%{opacity:1;text-shadow:0 0 12px rgba(251,191,36,.25),0 0 24px rgba(251,191,36,.28)}50%{opacity:.95;text-shadow:0 0 18px rgba(251,191,36,.62),0 0 36px rgba(251,191,36,.55)}}@keyframes strengthStepFocus{0%,100%{transform:translateY(0) scale(1);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}12%,28%{transform:translateY(-2px) scale(1.025);border-color:#3b82f6;box-shadow:0 0 0 5px rgba(59,130,246,.12),0 12px 26px rgba(37,99,235,.12)}40%{transform:translateY(0) scale(1);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:"";pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.timer-flash{animation:timerFlash 1.8s ease-in-out infinite}.dispatch-board{backdrop-filter:blur(12px)}.strength-step-visible{animation:strengthStepFocus 9s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.timer-flash,.strength-step-visible{animation:none}}`}</style>
+      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes timerFlash{0%,100%{opacity:1;text-shadow:0 0 12px rgba(251,191,36,.25),0 0 24px rgba(251,191,36,.28)}50%{opacity:.95;text-shadow:0 0 18px rgba(251,191,36,.62),0 0 36px rgba(251,191,36,.55)}}@keyframes strengthStepFocus{0%,100%{transform:translateY(0) scale(1);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}12%,28%{transform:translateY(-2px) scale(1.025);border-color:#3b82f6;box-shadow:0 0 0 5px rgba(59,130,246,.12),0 12px 26px rgba(37,99,235,.12)}40%{transform:translateY(0) scale(1);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}}@keyframes heroTitleShine{0%,12%,100%{transform:translateY(0);background-position:120% 0;filter:brightness(1) drop-shadow(0 1px 3px rgba(255,190,70,.08))}18%{transform:translateY(-2px);background-position:45% 0;filter:brightness(1.38) drop-shadow(0 0 7px rgba(255,197,77,.72))}25%{transform:translateY(0);background-position:-25% 0;filter:brightness(1.08) drop-shadow(0 1px 3px rgba(255,190,70,.22))}.hero-banner{container-type:inline-size}.hero-title-motion{position:absolute;top:25.2%;left:5.7%;display:flex;align-items:center;gap:0;width:44%;height:21%;font-family:'Noto Sans KR',sans-serif;font-size:clamp(30px,9.4cqw,96px);font-weight:900;letter-spacing:-.09em;line-height:1;white-space:nowrap;pointer-events:none}.hero-title-motion>span{color:transparent;background:linear-gradient(105deg,rgba(255,251,226,.08) 10%,rgba(255,247,213,.86) 42%,rgba(255,188,56,.98) 52%,rgba(255,251,226,.12) 76%);background-size:240% 100%;background-position:120% 0;background-clip:text;-webkit-background-clip:text;animation:heroTitleShine 5.2s ease-in-out infinite}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:"";pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.timer-flash{animation:timerFlash 1.8s ease-in-out infinite}.dispatch-board{backdrop-filter:blur(12px)}.strength-step-visible{animation:strengthStepFocus 9s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.timer-flash,.strength-step-visible,.hero-title-motion>span{animation:none}}`}</style>
       <Header />
       <main>
         <Hero />
