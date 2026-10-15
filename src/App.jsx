@@ -20,19 +20,32 @@ import { companyInfo, process as workProcess, reviews, services, strengths } fro
 const PHONE_LINK = 'tel:010-4154-0084'
 const KAKAO_LINK = 'https://pf.kakao.com/'
 
-const trustBadges = [
-  { image: '/img/badge_quote.png', alt: '투명한 사전 견적 안내' },
-  { image: '/img/badge_zero.png', alt: '미해결 시 비용 0원' },
-  { image: '/img/badge_time.png', alt: '원하는 시간 예약 가능' },
+const trustPoints = [
+  { label: '평균 출동 28~33분', icon: Clock3 },
+  { label: '작업 전 투명 견적', icon: FileCheck2 },
+  { label: '미해결 시 비용 0원', icon: Check },
+  { label: '원하는 시간 예약', icon: Phone },
 ]
 
-const serviceImages = [
-  '/img/service_toilet.png',
-  '/img/service_drain.png',
-  '/img/service_sink.png',
-  '/img/service_leak.png',
-  '/img/service_faucet.png',
-  '/img/service_pipe.png',
+const workPhotos = [
+  {
+    image: 'https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=1100&q=85',
+    alt: '욕실 배관을 점검하는 설비 기사',
+    title: '욕실 배관 점검',
+    credit: 'Bhagya Laxmi / Unsplash',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1654440122140-f1fc995ddb34?auto=format&fit=crop&w=1100&q=85',
+    alt: '세면대 배수구와 배관 상태',
+    title: '배수구 상태 확인',
+    credit: 'Daniel Dan / Unsplash',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1758400826781-a350d02cda6e?auto=format&fit=crop&w=1100&q=85',
+    alt: '수전과 물 흐름 점검',
+    title: '수전·연결부 점검',
+    credit: 'Jatin Saini / Unsplash',
+  },
 ]
 
 const promises = [
@@ -68,7 +81,7 @@ function SectionTitle({ eyebrow, title, description, centered = true }) {
   return (
     <div className={`mx-auto mb-9 max-w-2xl ${centered ? 'text-center' : ''}`}>
       <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-blue-700">{eyebrow}</p>
-      <h2 className="text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+      <h2 className="break-keep text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
       {description && <p className="mt-4 text-sm leading-7 text-slate-500 sm:text-base">{description}</p>}
     </div>
   )
@@ -126,44 +139,38 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-slate-950 text-white sm:min-h-[680px]">
-      <img src="/img/hero_banner.png" alt="역류하고 막혀 답답할 땐 해냄설비가 시원하게 뚫어냅니다" className="relative z-0 block h-auto w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-center" />
-      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/15 sm:block" />
-      <div className="bg-slate-950 px-5 py-6 sm:hidden">
-        <PhoneButton className="call-pulse flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 text-sm font-black text-white shadow-xl shadow-blue-950/30">
-          <PhoneCall size={20} /> <span>무료 전화상담 <span className="ml-1 font-semibold">010-4154-0084</span></span> <ArrowRight size={18} />
-        </PhoneButton>
-        <p className="mt-3 text-center text-xs text-white/65">24시간 상담 예약 · 전화 한 통으로 편하게 문의하세요</p>
-      </div>
-      <div className="mx-auto hidden min-h-[640px] max-w-7xl items-center px-5 py-16 sm:flex sm:min-h-[680px] sm:px-8">
+    <section id="home" className="relative isolate overflow-hidden bg-[#0b1d2c] text-white">
+      <img src="https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=2200&q=90" alt="욕실 설비를 점검하는 전문 기사" fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_center]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,22,36,.96)_0%,rgba(5,22,36,.82)_48%,rgba(5,22,36,.28)_100%)] sm:bg-[linear-gradient(90deg,rgba(5,22,36,.94)_0%,rgba(5,22,36,.76)_45%,rgba(5,22,36,.16)_100%)]" />
+      <div className="mx-auto flex min-h-[600px] max-w-7xl items-center px-5 py-12 sm:min-h-[690px] sm:px-8 sm:py-16 lg:min-h-[720px]">
         <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-wide text-blue-100 backdrop-blur-sm sm:text-sm">
-            <span className="h-2 w-2 rounded-full bg-cyan-300" /> 서울·수도권 배관케어 전문
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-wide text-white/90 backdrop-blur-sm sm:text-sm">
+            <span className="h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_0_4px_rgba(94,234,212,.15)]" /> 서울·수도권 배관케어 전문
           </div>
-          <h1 className="max-w-3xl text-[clamp(2.45rem,8vw,5rem)] font-black leading-[1.16] tracking-[-0.055em]">
-            역류하고 막혀서 답답할 땐?
-            <span className="mt-1 block text-cyan-300">해냄설비가 시원하게 뚫어냅니다!</span>
+          <h1 className="max-w-4xl text-[clamp(1.8rem,8vw,5rem)] font-black leading-[1.13] tracking-[-0.055em] sm:text-[clamp(2.7rem,4.6vw,4.75rem)]">
+            <span className="block">역류하고 막혀서</span>
+            <span className="block">답답할 땐?</span>
+            <span className="mt-2 block text-teal-300">해냄설비가</span>
+            <span className="block text-teal-300">시원하게 뚫어냅니다!</span>
           </h1>
-          <p className="mt-6 max-w-xl text-sm leading-7 text-white/80 sm:text-lg sm:leading-8">
-            막힘의 원인부터 꼼꼼하게 살피고, 필요한 작업과 비용을 먼저 안내합니다.
+          <p className="mt-4 max-w-xl text-sm leading-6 text-white/80 sm:mt-6 sm:text-lg sm:leading-8">
+            현장 상태를 꼼꼼히 살피고, 필요한 작업과 비용을 먼저 안내합니다.
           </p>
-
-          <div className="mt-7 grid max-w-xl grid-cols-3 gap-2.5 sm:gap-3">
-            {trustBadges.map((badge) => (
-              <div key={badge.image} className="flex min-h-[90px] items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-2 py-3 backdrop-blur-sm sm:min-h-[106px] sm:rounded-2xl sm:px-4">
-                <img src={badge.image} alt={badge.alt} className="max-h-16 max-w-full object-contain sm:max-h-[76px]" />
+          <div className="mt-5 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-7 sm:grid-cols-4 sm:gap-3">
+            {trustPoints.map(({ label, icon: Icon }) => (
+              <div key={label} className="flex items-center gap-2 text-xs font-semibold text-white/90 sm:rounded-xl sm:border sm:border-white/15 sm:bg-white/10 sm:px-3 sm:py-3 sm:text-[11px]">
+                <Icon size={17} className="shrink-0 text-teal-300" /> {label}
               </div>
             ))}
           </div>
-
-          <PhoneButton className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 px-6 text-base font-black text-white shadow-xl shadow-blue-950/30 transition hover:bg-blue-500 sm:w-auto sm:min-w-[330px] sm:text-lg">
-            <PhoneCall size={21} /> 무료 전화상담 (010-4154-0084) <ArrowRight size={19} />
+          <PhoneButton className="call-pulse mt-6 flex min-h-14 w-full items-center justify-between gap-2 rounded-xl bg-teal-400 px-4 text-xs font-black text-[#062324] shadow-xl shadow-black/20 transition hover:bg-teal-300 sm:mt-8 sm:inline-flex sm:w-auto sm:min-w-[310px] sm:justify-center sm:gap-3 sm:px-5 sm:text-base">
+            <PhoneCall size={19} className="shrink-0" /> <span className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap">무료 전화상담 <span className="font-extrabold">010-4154-0084</span></span> <ArrowRight size={17} className="shrink-0" />
           </PhoneButton>
-          <p className="mt-3 text-center text-xs text-white/60 sm:text-left">24시간 상담 예약 · 전화 한 통으로 편하게 문의하세요</p>
+          <p className="mt-2 hidden text-center text-[11px] text-white/65 sm:mt-3 sm:block sm:text-left sm:text-xs">전화로 증상을 말씀해주시면 방문 일정을 안내해드립니다.</p>
         </div>
       </div>
-      <a href="#services" className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-white/65 sm:flex">
-        SCROLL TO EXPLORE <ArrowDown size={14} />
+      <a href="#services" className="absolute bottom-6 right-8 hidden items-center gap-2 text-[10px] font-bold tracking-[0.18em] text-white/65 lg:flex">
+        SERVICES <ArrowDown size={14} />
       </a>
     </section>
   )
@@ -178,15 +185,18 @@ function ServiceGrid() {
           title="막힘부터 누수까지, 한 번에"
           description="가정에서 자주 발생하는 배관 문제를 현장에 맞는 방법으로 해결합니다."
         />
-        <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
           {services.map((service, index) => {
+            const Icon = service.icon
             return (
-              <article key={service.title} className="group min-w-0">
-                <div className="overflow-hidden rounded-2xl bg-white transition duration-300 group-hover:-translate-y-1">
-                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="aspect-square w-full object-contain" />
+              <article key={service.title} className="group flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-slate-900/5 sm:p-6">
+                <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-teal-50 text-teal-700 sm:h-12 sm:w-12"><Icon size={19} /></span>
+                  <h3 className="break-keep text-[13px] font-black leading-5 tracking-tight text-slate-900 sm:text-lg">{service.title}</h3>
                 </div>
-                <a href={PHONE_LINK} className="mt-2 flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700 sm:text-sm">
-                  <Phone size={14} /> 전화 상담 <ChevronRight size={14} />
+                <p className="mt-3 hidden flex-1 text-[11px] leading-5 text-slate-500 sm:block sm:text-sm sm:leading-6">{service.desc}</p>
+                <a href={PHONE_LINK} className="mt-3 inline-flex min-h-9 items-center gap-1 border-t border-slate-100 pt-2.5 text-[11px] font-extrabold text-teal-700 transition group-hover:text-teal-900 sm:mt-4 sm:min-h-10 sm:gap-1.5 sm:pt-3 sm:text-sm">
+                  <Phone size={13} /> 전화 상담 <ChevronRight size={14} />
                 </a>
               </article>
             )
@@ -204,13 +214,13 @@ function ProcessSection() {
         <SectionTitle eyebrow="HOW WE WORK" title="상담부터 마무리까지, 투명하게" description="작업 범위와 비용을 먼저 안내하고 동의하신 내용대로 진행합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {workProcess.map(({ step, title, desc, icon: Icon }) => (
-            <article key={step} className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-6">
+            <article key={step} className="min-h-[122px] rounded-2xl border border-slate-200 bg-white p-4 sm:min-h-0 sm:p-6">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold tracking-[0.15em] text-blue-700 sm:text-xs">STEP 0{step}</span>
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:h-11 sm:w-11"><Icon size={20} /></span>
               </div>
-              <h3 className="mt-4 text-base font-black text-slate-900 sm:mt-6 sm:text-lg">{title}</h3>
-              <p className="mt-2 text-xs leading-6 text-slate-500 sm:text-sm">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+              <h3 className="mt-4 break-keep text-base font-black text-slate-900 sm:mt-6 sm:text-lg">{title}</h3>
+              <p className="mt-2 hidden text-xs leading-6 text-slate-500 sm:block sm:text-sm">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
             </article>
           ))}
         </div>
@@ -226,13 +236,13 @@ function StrengthSection() {
         <SectionTitle eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description="현장에 맞는 방법으로 꼼꼼하게 살피고, 작업 후까지 확인합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
           {strengths.map(({ title, desc, icon: Icon }, index) => (
-            <article key={title} className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:shadow-lg hover:shadow-blue-950/5 sm:p-6">
+            <article key={title} className="min-h-[122px] rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:shadow-lg hover:shadow-blue-950/5 sm:min-h-0 sm:p-6">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-bold tracking-widest text-slate-300">0{index + 1}</span>
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:h-11 sm:w-11"><Icon size={20} /></span>
               </div>
-              <h3 className="mt-3 text-sm font-black text-slate-900 sm:mt-5 sm:text-base">{title}</h3>
-              <p className="mt-2 text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6">{desc}</p>
+              <h3 className="mt-3 break-keep text-sm font-black text-slate-900 sm:mt-5 sm:text-base">{title}</h3>
+              <p className="mt-2 hidden text-xs leading-5 text-slate-500 sm:block sm:text-sm sm:leading-6">{desc}</p>
             </article>
           ))}
         </div>
@@ -241,18 +251,23 @@ function StrengthSection() {
   )
 }
 
-function BeforeAfter() {
+function WorkGallery() {
   return (
     <section id="work" className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="WORK RESULT" title="막힌 배관, 달라진 흐름" description="작업 전후를 한눈에 확인해보세요." />
-        <figure className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/5 sm:p-3">
-          <img src="/img/before_after.png" alt="배관 막힘 작업 전과 후 비교" loading="lazy" className="max-h-[620px] w-full rounded-2xl object-cover" />
-          <figcaption className="flex flex-col gap-1 px-3 py-4 text-center sm:flex-row sm:items-center sm:justify-between sm:px-5">
-            <span className="font-extrabold text-slate-900">원인 확인부터 배수 상태 점검까지 꼼꼼하게</span>
-            <span className="text-xs text-slate-500">작업 결과는 현장과 배관 상태에 따라 다를 수 있습니다.</span>
-          </figcaption>
-        </figure>
+        <SectionTitle eyebrow="PLUMBING CARE" title="작은 불편도 꼼꼼하게 살핍니다" description="배관과 설비의 상태에 따라 필요한 점검과 작업 방법을 안내합니다." />
+        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+          {workPhotos.map((photo) => (
+            <figure key={photo.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+              <img src={photo.image} alt={photo.alt} loading="lazy" className="aspect-[4/3] w-full object-cover transition duration-500 hover:scale-[1.02]" />
+              <figcaption className="flex items-center justify-between gap-2 px-4 py-4">
+                <span className="text-sm font-extrabold text-slate-900">{photo.title}</span>
+                <span className="text-[9px] text-slate-400">{photo.credit}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="mt-4 text-center text-[11px] text-slate-400">사진은 서비스 이해를 돕기 위한 참고 이미지입니다.</p>
       </div>
     </section>
   )
@@ -359,7 +374,7 @@ export default function App() {
         <Promises />
         <ProcessSection />
         <StrengthSection />
-        <BeforeAfter />
+        <WorkGallery />
         <Reviews />
         <ContactFooter />
       </main>
