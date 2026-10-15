@@ -145,11 +145,11 @@ function Hero() {
 
 function TrustBadges() {
   return (
-    <section className="bg-white px-4 py-7 sm:px-7 sm:py-10" aria-label="해냄설비 서비스 약속">
-      <div className="mx-auto grid max-w-3xl grid-cols-3 gap-2.5 sm:gap-5">
-        {trustBadges.map(({ src, alt, width, height }) => (
-          <div key={src} className="grid min-h-28 place-items-center rounded-2xl border border-slate-100 bg-slate-50 p-2 shadow-sm sm:min-h-40 sm:rounded-3xl sm:p-3">
-            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" className="block h-auto w-full max-w-32 object-contain drop-shadow-sm" />
+    <section className="bg-white px-4 py-4 sm:px-7 sm:py-7" aria-label="해냄설비 서비스 약속">
+      <div className="mx-auto grid max-w-3xl grid-cols-3 divide-x divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_24px_rgba(15,23,42,.07)] sm:rounded-3xl">
+        {trustBadges.map(({ src, alt, width, height }, index) => (
+          <div key={src} className="grid min-h-24 place-items-center px-1.5 py-2 sm:min-h-36 sm:px-4 sm:py-3">
+            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" style={{ animationDelay: `${index * 0.35}s` }} className="badge-float block h-auto w-full max-w-28 object-contain drop-shadow-md" />
           </div>
         ))}
       </div>
@@ -339,7 +339,7 @@ function MobileActionBar() {
 export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white pb-24 font-sans text-slate-900 md:pb-0">
-      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0)}}.call-pulse{animation:callGlow 2.4s ease-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse{animation:none}}`}</style>
+      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.badge-float{animation:badgeFloat 3.2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.badge-float{animation:none}}`}</style>
       <Header />
       <main>
         <Hero />
