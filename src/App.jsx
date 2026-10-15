@@ -1,10 +1,8 @@
 import {
-  ArrowDown,
   ArrowRight,
   BadgeCheck,
   Check,
   ChevronRight,
-  Clock3,
   Droplets,
   FileCheck2,
   Menu,
@@ -19,13 +17,6 @@ import { companyInfo, process as workProcess, reviews, services, strengths } fro
 
 const PHONE_LINK = 'tel:010-4154-0084'
 const KAKAO_LINK = 'https://pf.kakao.com/'
-
-const trustPoints = [
-  { label: '평균 출동 28~33분', icon: Clock3 },
-  { label: '작업 전 투명 견적', icon: FileCheck2 },
-  { label: '미해결 시 비용 0원', icon: Check },
-  { label: '원하는 시간 예약', icon: Phone },
-]
 
 const workPhotos = [
   {
@@ -139,39 +130,18 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-[#0b1d2c] text-white">
-      <img src="https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=2200&q=90" alt="욕실 설비를 점검하는 전문 기사" fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_center]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,22,36,.96)_0%,rgba(5,22,36,.82)_48%,rgba(5,22,36,.28)_100%)] sm:bg-[linear-gradient(90deg,rgba(5,22,36,.94)_0%,rgba(5,22,36,.76)_45%,rgba(5,22,36,.16)_100%)]" />
-      <div className="mx-auto flex min-h-[600px] max-w-7xl items-center px-5 py-12 sm:min-h-[690px] sm:px-8 sm:py-16 lg:min-h-[720px]">
-        <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-wide text-white/90 backdrop-blur-sm sm:text-sm">
-            <span className="h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_0_4px_rgba(94,234,212,.15)]" /> 서울·수도권 배관케어 전문
-          </div>
-          <h1 className="max-w-4xl text-[clamp(1.8rem,8vw,5rem)] font-black leading-[1.13] tracking-[-0.055em] sm:text-[clamp(2.7rem,4.6vw,4.75rem)]">
-            <span className="block">역류하고 막혀서</span>
-            <span className="block">답답할 땐?</span>
-            <span className="mt-2 block text-teal-300">해냄설비가</span>
-            <span className="block text-teal-300">시원하게 뚫어냅니다!</span>
-          </h1>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-white/80 sm:mt-6 sm:text-lg sm:leading-8">
-            현장 상태를 꼼꼼히 살피고, 필요한 작업과 비용을 먼저 안내합니다.
-          </p>
-          <div className="mt-5 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-7 sm:grid-cols-4 sm:gap-3">
-            {trustPoints.map(({ label, icon: Icon }) => (
-              <div key={label} className="flex items-center gap-2 text-xs font-semibold text-white/90 sm:rounded-xl sm:border sm:border-white/15 sm:bg-white/10 sm:px-3 sm:py-3 sm:text-[11px]">
-                <Icon size={17} className="shrink-0 text-teal-300" /> {label}
-              </div>
-            ))}
-          </div>
-          <PhoneButton className="call-pulse mt-6 flex min-h-14 w-full items-center justify-between gap-2 rounded-xl bg-teal-400 px-4 text-xs font-black text-[#062324] shadow-xl shadow-black/20 transition hover:bg-teal-300 sm:mt-8 sm:inline-flex sm:w-auto sm:min-w-[310px] sm:justify-center sm:gap-3 sm:px-5 sm:text-base">
-            <PhoneCall size={19} className="shrink-0" /> <span className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap">무료 전화상담 <span className="font-extrabold">010-4154-0084</span></span> <ArrowRight size={17} className="shrink-0" />
-          </PhoneButton>
-          <p className="mt-2 hidden text-center text-[11px] text-white/65 sm:mt-3 sm:block sm:text-left sm:text-xs">전화로 증상을 말씀해주시면 방문 일정을 안내해드립니다.</p>
-        </div>
+    <section id="home" className="bg-[#07182a]">
+      <img
+        src="/img/hero_banner.png"
+        alt="역류하고 막혀서 답답할 땐 해냄설비가 시원하게 뚫어냅니다. 평균 출동 30분, 투명한 정찰 견적, 미해결 시 0원. 전화 010-4154-0084 무료상담"
+        fetchPriority="high"
+        className="mx-auto block h-auto w-full max-w-[1600px]"
+      />
+      <div className="px-5 pb-5 sm:pb-7">
+        <PhoneButton className="call-pulse mx-auto flex min-h-14 w-full max-w-xl items-center justify-center gap-3 rounded-xl bg-[#f8a21a] px-5 text-base font-black text-[#102342] shadow-lg transition hover:bg-amber-300 sm:min-h-16 sm:text-lg">
+          <PhoneCall size={21} /> 무료 전화상담 <span>{companyInfo.phone}</span>
+        </PhoneButton>
       </div>
-      <a href="#services" className="absolute bottom-6 right-8 hidden items-center gap-2 text-[10px] font-bold tracking-[0.18em] text-white/65 lg:flex">
-        SERVICES <ArrowDown size={14} />
-      </a>
     </section>
   )
 }
