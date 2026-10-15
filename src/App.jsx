@@ -67,7 +67,7 @@ function PhoneLink({ children, className = '', ...props }) {
 function SectionHeading({ eyebrow, title, description }) {
   return (
     <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-12">
-      <p className="mb-2 text-[11px] font-extrabold uppercase tracking-[.18em] text-blue-700 sm:text-xs">{eyebrow}</p>
+      <p className="mb-3 inline-flex min-h-9 items-center rounded-full bg-blue-50 px-3 text-sm font-black text-blue-800 sm:min-h-10 sm:px-4 sm:text-base">{eyebrow}</p>
       <h2 className="break-keep text-[clamp(1.55rem,6vw,2.5rem)] font-black leading-tight tracking-[-.04em] text-slate-900">{title}</h2>
       {description && <p className="mx-auto mt-3 max-w-xl break-keep text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base sm:leading-7">{description}</p>}
     </div>
@@ -155,7 +155,7 @@ function ServiceGrid() {
   return (
     <section id="services" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="HAENAEM SERVICES" title="막힘부터 누수까지, 한 번에" description="현장을 꼼꼼히 확인하고 문제에 맞는 방법으로 작업합니다." />
+        <SectionHeading eyebrow="해냄설비 주요 서비스" title="막힘부터 누수까지, 한 번에" description="현장을 꼼꼼히 확인하고 문제에 맞는 방법으로 작업합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
           {services.map((service, index) => {
             const Icon = service.icon
@@ -183,7 +183,7 @@ function BeforeAfter() {
   return (
     <section id="work" className="scroll-mt-20 bg-white px-4 py-14 sm:px-7 sm:py-20">
       <div className="mx-auto max-w-5xl">
-        <SectionHeading eyebrow="BEFORE & AFTER" title="막힌 배관, 달라진 흐름" description="작업 전후 배관 상태를 한눈에 비교해보세요." />
+        <SectionHeading eyebrow="작업 전 · 작업 후 비교" title="막힌 배관, 달라진 흐름" description="작업 전후 배관 상태를 한눈에 비교해보세요." />
         <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm sm:rounded-3xl">
           <img src="/img/before_after.png" alt="배관 세척 전 오염된 상태와 작업 후 깨끗해진 상태 비교" width="2048" height="1024" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
           <figcaption className="grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5">
@@ -227,7 +227,7 @@ function ProcessSection() {
   return (
     <section id="process" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="SIMPLE PROCESS" title="접수부터 책임 시공까지" description="작업 범위와 비용을 먼저 안내한 뒤, 합의된 내용대로 진행합니다." />
+        <SectionHeading eyebrow="간편한 작업 과정" title="접수부터 책임 시공까지" description="작업 범위와 비용을 먼저 안내한 뒤, 합의된 내용대로 진행합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {workProcess.map(({ step, title, desc, icon: Icon }) => (
             <article key={step} className="rounded-2xl border border-slate-200 bg-white p-4 sm:rounded-3xl sm:p-6">
@@ -246,7 +246,7 @@ function StrengthSection() {
   return (
     <section className="bg-white px-4 py-14 sm:px-7 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description="꼼꼼한 점검과 정직한 설명으로 믿을 수 있는 서비스를 제공합니다." />
+        <SectionHeading eyebrow="해냄설비가 다른 이유" title="해냄설비를 선택하는 이유" description="꼼꼼한 점검과 정직한 설명으로 믿을 수 있는 서비스를 제공합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
           {strengths.map(({ title, desc, icon: Icon }, index) => (
             <article key={title} className="min-h-32 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:min-h-0 sm:rounded-3xl sm:p-6">
@@ -265,7 +265,7 @@ function Reviews() {
   return (
     <section id="reviews" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="CUSTOMER REVIEWS" title="고객님이 남겨주신 후기" description="상담과 작업 과정에서 느끼신 점을 확인해보세요." />
+        <SectionHeading eyebrow="고객님들의 이용 후기" title="고객님이 남겨주신 후기" description="상담과 작업 과정에서 느끼신 점을 확인해보세요." />
         <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {reviews.slice(0, 5).map((review) => (
             <article key={`${review.name}-${review.service}`} className="flex min-h-48 flex-col rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:min-h-56 sm:rounded-3xl sm:p-6">
