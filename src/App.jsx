@@ -10,7 +10,7 @@ import {
   ShieldCheck,
   Star,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { companyInfo, process as workProcess, reviews, services, strengths } from './data/siteData'
 
 const PHONE_LINK = 'tel:010-4154-0084'
@@ -241,13 +241,34 @@ function ProcessSection() {
 }
 
 function StrengthSection() {
+  const gridRef = useRef(null)
+  const [stepsVisible, setStepsVisible] = useState(false)
+
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid || !('IntersectionObserver' in window)) {
+      setStepsVisible(true)
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setStepsVisible(true)
+        observer.disconnect()
+      }
+    }, { threshold: 0.2 })
+
+    observer.observe(grid)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className="bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="해냄설비가 다른 이유" title="해냄설비를 선택하는 이유" description="꼼꼼한 점검과 정직한 설명으로 믿을 수 있는 서비스를 제공합니다." />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+        <div ref={gridRef} className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
           {strengths.map(({ title, desc, icon: Icon }, index) => (
-            <article key={title} className="min-h-32 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:min-h-0 sm:rounded-3xl sm:p-6">
+            <article key={title} style={{ animationDelay: `${index * 180}ms` }} className={`strength-step min-h-32 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:min-h-0 sm:rounded-3xl sm:p-6 ${stepsVisible ? 'strength-step-visible' : ''}`}>
               <div className="flex items-center justify-between"><span className="text-[10px] font-bold tracking-widest text-slate-400">0{index + 1}</span><span className="grid size-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:size-11"><Icon size={19} /></span></div>
               <h3 className="mt-3 break-keep text-sm font-black text-slate-900 sm:mt-5 sm:text-base">{title}</h3>
               <p className="mt-2 hidden text-sm leading-6 text-slate-600 sm:block">{desc}</p>
@@ -319,7 +340,7 @@ function MobileActionBar() {
 export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white pb-28 font-sans text-slate-900 md:pb-0">
-      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}50%{background-position:100% 50%;filter:drop-shadow(0 0 15px rgba(251,191,36,.55))}}@keyframes timerFlash{0%,100%{opacity:1;text-shadow:0 0 12px rgba(251,191,36,.25),0 0 24px rgba(251,191,36,.28)}50%{opacity:.95;text-shadow:0 0 18px rgba(251,191,36,.62),0 0 36px rgba(251,191,36,.55)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.timer-flash{animation:timerFlash 1.8s ease-in-out infinite}.dispatch-board{backdrop-filter:blur(12px)}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.timer-flash{animation:none}}`}</style>
+      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes timerFlash{0%,100%{opacity:1;text-shadow:0 0 12px rgba(251,191,36,.25),0 0 24px rgba(251,191,36,.28)}50%{opacity:.95;text-shadow:0 0 18px rgba(251,191,36,.62),0 0 36px rgba(251,191,36,.55)}}@keyframes strengthStepFocus{0%{transform:translateY(12px) scale(.97);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}58%{transform:translateY(0) scale(1.025);border-color:#3b82f6;box-shadow:0 0 0 5px rgba(59,130,246,.12),0 12px 26px rgba(37,99,235,.12)}100%{transform:translateY(0) scale(1);border-color:#e2e8f0;box-shadow:0 1px 3px rgba(15,23,42,.04)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:"";pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.timer-flash{animation:timerFlash 1.8s ease-in-out infinite}.dispatch-board{backdrop-filter:blur(12px)}.strength-step-visible{animation:strengthStepFocus 760ms cubic-bezier(.2,.7,.2,1) both}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.timer-flash,.strength-step-visible{animation:none}}`}</style>
       <Header />
       <main>
         <Hero />
