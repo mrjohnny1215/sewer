@@ -4,154 +4,238 @@ import {
   BadgeCheck,
   Check,
   ChevronRight,
+  Clock3,
   Droplets,
-  MapPin,
+  FileCheck2,
   Menu,
   MessageCircle,
   Phone,
   PhoneCall,
   ShieldCheck,
   Star,
-  X,
 } from 'lucide-react'
 import { useState } from 'react'
-import {
-  badges,
-  companyInfo,
-  process,
-  promises,
-  reviews,
-  services,
-  strengths,
-} from './data/siteData'
+import { companyInfo, reviews, services } from './data/siteData'
 
-const kakaoLink = 'https://pf.kakao.com/'
+const PHONE_LINK = 'tel:010-4154-0084'
+const KAKAO_LINK = 'https://pf.kakao.com/'
 
-const galleryItems = [
+const trustBadges = [
+  { image: '/img/badge_quote.png', alt: '투명한 사전 견적 안내' },
+  { image: '/img/badge_zero.png', alt: '미해결 시 비용 0원' },
+  { image: '/img/badge_time.png', alt: '원하는 시간 예약 가능' },
+]
+
+const serviceImages = [
+  '/img/service_toilet.png',
+  '/img/service_drain.png',
+  '/img/service_sink.png',
+  '/img/service_leak.png',
+  '/img/service_faucet.png',
+  '/img/service_pipe.png',
+]
+
+const promises = [
   {
-    category: '배수구 막힘',
-    title: '막힌 욕실 배수구 정비',
-    image:
-      'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200&q=85',
-    alt: '깔끔하고 현대적인 욕실 배수 공간',
+    number: '01',
+    title: '원인 사전 설명',
+    description: '작업을 시작하기 전에 문제 원인과 필요한 조치를 먼저 설명합니다.',
+    icon: MessageCircle,
   },
   {
-    category: '누수 점검',
-    title: '배관 누수 원인 확인',
-    image:
-      'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=85',
-    alt: '설비 기술자가 배관 설비를 점검하는 모습',
+    number: '02',
+    title: '사전 합의 정찰 견적',
+    description: '현장을 확인한 뒤 작업 범위와 비용을 안내하고 동의를 구합니다.',
+    icon: FileCheck2,
   },
   {
-    category: '수전 교체',
-    title: '주방 수전 교체 작업',
-    image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
-    alt: '정돈된 주방과 싱크대 공간',
+    number: '03',
+    title: '무리한 과잉 시공 지양',
+    description: '상태에 꼭 필요한 작업만 제안하고 불필요한 시공은 권하지 않습니다.',
+    icon: ShieldCheck,
   },
 ]
 
-function CallLink({ children, className = '', ...props }) {
+function PhoneButton({ children, className = '', ...props }) {
   return (
-    <a href={companyInfo.telLink} className={className} {...props}>
+    <a href={PHONE_LINK} className={className} {...props}>
       {children}
     </a>
   )
 }
 
-function SectionHeading({ eyebrow, title, description, light = false }) {
+function SectionTitle({ eyebrow, title, description, centered = true }) {
   return (
-    <div className={`section-heading ${light ? 'section-heading-light' : ''}`}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2>{title}</h2>
-      {description && <p className="section-description">{description}</p>}
+    <div className={`mx-auto mb-9 max-w-2xl ${centered ? 'text-center' : ''}`}>
+      <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-blue-700">{eyebrow}</p>
+      <h2 className="text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+      {description && <p className="mt-4 text-sm leading-7 text-slate-500 sm:text-base">{description}</p>}
     </div>
   )
 }
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const links = [
+  const navItems = [
     ['서비스', '#services'],
-    ['작업과정', '#process'],
-    ['작업사례', '#gallery'],
+    ['작업사례', '#work'],
+    ['정직한 약속', '#promise'],
     ['고객후기', '#reviews'],
   ]
 
   return (
-    <header className="site-header">
-      <div className="header-inner container">
-        <a className="brand" href="#home" aria-label="해냄설비 홈">
-          <span className="brand-mark"><Droplets size={22} strokeWidth={2.5} /></span>
-          <span>{companyInfo.name}<small>배관케어 전문</small></span>
+    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 sm:px-8">
+        <a href="#home" className="flex items-center gap-2.5" aria-label="해냄설비 홈">
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-700 text-white shadow-sm shadow-blue-200">
+            <Droplets size={22} strokeWidth={2.4} />
+          </span>
+          <span className="text-lg font-black tracking-tight text-slate-900">해냄설비</span>
         </a>
-        <nav className={`desktop-nav ${menuOpen ? 'mobile-nav-open' : ''}`} aria-label="주요 메뉴">
-          {links.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+
+        <nav className="hidden items-center gap-8 md:flex" aria-label="주요 메뉴">
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} className="text-sm font-bold text-slate-600 transition hover:text-blue-700">{label}</a>
           ))}
-          <CallLink className="header-call mobile-header-call"><Phone size={17} /> 전화 상담</CallLink>
         </nav>
-        <CallLink className="header-call desktop-header-call"><Phone size={17} /> 전화 상담 <b>{companyInfo.phone}</b></CallLink>
+
+        <PhoneButton className="hidden items-center gap-2 rounded-full bg-blue-700 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800 md:inline-flex">
+          <Phone size={16} /> 무료 전화상담 <span className="hidden lg:inline">{companyInfo.phone}</span>
+        </PhoneButton>
+
         <button
-          className="menu-toggle"
+          className="grid h-10 w-10 place-items-center rounded-lg text-slate-700 md:hidden"
           type="button"
+          onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
         >
-          {menuOpen ? <X /> : <Menu />}
+          <Menu size={23} />
         </button>
       </div>
+      {menuOpen && (
+        <nav className="border-t border-slate-100 bg-white px-5 py-3 md:hidden" aria-label="모바일 메뉴">
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)} className="block border-b border-slate-100 py-3.5 text-sm font-bold text-slate-700 last:border-0">{label}</a>
+          ))}
+        </nav>
+      )}
     </header>
   )
 }
 
-function HeroSection() {
+function Hero() {
   return (
-    <section className="hero" id="home">
-      <div className="hero-image" aria-hidden="true" />
-      <div className="hero-shade" aria-hidden="true" />
-      <div className="container hero-content">
-        <div className="hero-copy">
-          <p className="hero-kicker"><span /> 서울·수도권 24시 긴급 출동</p>
-          <h1><span className="hero-slogan-line">막힌 곳은 시원하게,</span><br /><em>견적은 투명하게.</em></h1>
-          <p className="hero-description">
-            갑작스러운 배관 문제, 원인부터 꼼꼼히 확인하고<br className="desktop-break" />
-            필요한 작업만 정직하게 안내해드립니다.
+    <section id="home" className="relative isolate min-h-[640px] overflow-hidden bg-slate-950 text-white sm:min-h-[680px]">
+      <img src="/img/hero_banner.png" alt="해냄설비 전문 배관 점검 현장" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/15" />
+      <div className="mx-auto flex min-h-[640px] max-w-7xl items-center px-5 py-16 sm:min-h-[680px] sm:px-8">
+        <div className="max-w-3xl">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-wide text-blue-100 backdrop-blur-sm sm:text-sm">
+            <span className="h-2 w-2 rounded-full bg-cyan-300" /> 서울·수도권 배관케어 전문
+          </div>
+          <h1 className="max-w-3xl text-[clamp(2.45rem,8vw,5rem)] font-black leading-[1.16] tracking-[-0.055em]">
+            역류하고 막혀서 답답할 땐?
+            <span className="mt-1 block text-cyan-300">해냄설비가 시원하게 뚫어냅니다!</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-sm leading-7 text-white/80 sm:text-lg sm:leading-8">
+            막힘의 원인부터 꼼꼼하게 살피고, 필요한 작업과 비용을 먼저 안내합니다.
           </p>
-          <div className="hero-badges">
-            {badges.map(({ label, icon: Icon }) => (
-              <span className="hero-badge" key={label}><Icon size={15} />{label}</span>
+
+          <div className="mt-7 grid max-w-xl grid-cols-3 gap-2.5 sm:gap-3">
+            {trustBadges.map((badge) => (
+              <div key={badge.image} className="flex min-h-[90px] items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-2 py-3 backdrop-blur-sm sm:min-h-[106px] sm:rounded-2xl sm:px-4">
+                <img src={badge.image} alt={badge.alt} className="max-h-16 max-w-full object-contain sm:max-h-[76px]" />
+              </div>
             ))}
           </div>
-          <div className="hero-actions">
-            <CallLink className="button button-primary hero-call pulse"><PhoneCall size={19} /> 지금 전화 상담 <ArrowRight size={18} /></CallLink>
-            <a className="button button-outline" href="#services">서비스 둘러보기 <ArrowDown size={17} /></a>
-          </div>
-          <p className="hero-footnote"><ShieldCheck size={15} /> 작업 전 비용 안내 · 미해결 시 비용 부담 없음</p>
+
+          <PhoneButton className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 px-6 text-base font-black text-white shadow-xl shadow-blue-950/30 transition hover:bg-blue-500 sm:w-auto sm:min-w-[330px] sm:text-lg">
+            <PhoneCall size={21} /> 무료 전화상담 (010-4154-0084) <ArrowRight size={19} />
+          </PhoneButton>
+          <p className="mt-3 text-center text-xs text-white/60 sm:text-left">24시간 상담 예약 · 전화 한 통으로 편하게 문의하세요</p>
         </div>
-        <div className="hero-side-note"><span className="hero-side-line" /> 믿을 수 있는 우리 동네 설비 파트너</div>
       </div>
-      <div className="hero-bottom container">
-        <span>PLUMBING CARE, DONE RIGHT</span><span>01 / 06</span>
+      <a href="#services" className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-white/65 sm:flex">
+        SCROLL TO EXPLORE <ArrowDown size={14} />
+      </a>
+    </section>
+  )
+}
+
+function ServiceGrid() {
+  return (
+    <section id="services" className="bg-white px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle
+          eyebrow="HAENAEM SERVICES"
+          title="막힘부터 누수까지, 한 번에"
+          description="가정에서 자주 발생하는 배관 문제를 현장에 맞는 방법으로 해결합니다."
+        />
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+          {services.map((service, index) => {
+            const Icon = service.icon
+            return (
+              <article key={service.title} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5">
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-black text-blue-800 shadow-sm sm:left-4 sm:top-4 sm:px-3 sm:text-xs">0{index + 1}</span>
+                </div>
+                <div className="p-3.5 sm:p-5">
+                  <div className="flex items-center gap-2">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700 sm:h-9 sm:w-9"><Icon size={18} /></span>
+                    <h3 className="text-sm font-black tracking-tight text-slate-900 sm:text-lg">{service.title}</h3>
+                  </div>
+                  <p className="mt-3 hidden text-sm leading-6 text-slate-500 sm:block">{service.desc}</p>
+                  <a href="#contact" className="mt-3 inline-flex items-center gap-1 text-xs font-extrabold text-blue-700 sm:mt-4 sm:text-sm">상담 문의 <ChevronRight size={15} /></a>
+                </div>
+              </article>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
 }
 
-function ServiceList() {
+function BeforeAfter() {
   return (
-    <section className="section section-services" id="services">
-      <div className="container">
-        <SectionHeading eyebrow="OUR SERVICES" title={<>집 안의 배관 문제,<br className="mobile-break" /> 한 번에 해결하세요</>} description={<>막힘부터 누수까지, 현장에 맞는 방법으로<br />꼼꼼하게 작업합니다.</>} />
-        <div className="service-grid">
-          {services.map(({ title, desc, icon: Icon }, index) => (
-            <article className="service-card" key={title}>
-              <div className="card-topline"><span>0{index + 1}</span><ArrowRight size={17} /></div>
-              <div className="service-icon"><Icon size={27} strokeWidth={1.7} /></div>
-              <h3>{title}</h3>
-              <p>{desc}</p>
-              <a href="#contact" aria-label={`${title} 상담하기`}>자세히 보기 <ChevronRight size={15} /></a>
+    <section id="work" className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle eyebrow="WORK RESULT" title="막힌 배관, 달라진 흐름" description="작업 전후를 한눈에 확인해보세요." />
+        <figure className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/5 sm:p-3">
+          <img src="/img/before_after.png" alt="배관 막힘 작업 전과 후 비교" loading="lazy" className="max-h-[620px] w-full rounded-2xl object-cover" />
+          <figcaption className="flex flex-col gap-1 px-3 py-4 text-center sm:flex-row sm:items-center sm:justify-between sm:px-5">
+            <span className="font-extrabold text-slate-900">원인 확인부터 배수 상태 점검까지 꼼꼼하게</span>
+            <span className="text-xs text-slate-500">작업 결과는 현장과 배관 상태에 따라 다를 수 있습니다.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  )
+}
+
+function Promises() {
+  return (
+    <section id="promise" className="overflow-hidden bg-[#102d50] px-5 py-16 text-white sm:px-8 sm:py-24">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
+        <div>
+          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-cyan-300">HONEST SERVICE</p>
+          <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-5xl">견적은 투명하게,<br />작업은 정직하게.</h2>
+          <p className="mt-5 max-w-lg text-sm leading-7 text-blue-100/75 sm:text-base">
+            불필요한 공사나 갑작스러운 추가 비용 걱정 없이, 작업 전에 충분히 설명드리고 합의한 범위 안에서 진행합니다.
+          </p>
+          <PhoneButton className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-blue-900 transition hover:bg-cyan-50">
+            <Phone size={17} /> 먼저 전화로 상담하기 <ArrowRight size={16} />
+          </PhoneButton>
+        </div>
+        <div className="divide-y divide-white/15 border-y border-white/15">
+          {promises.map(({ number, title, description, icon: Icon }) => (
+            <article key={number} className="grid grid-cols-[34px_44px_1fr_20px] items-center gap-3 py-5 sm:grid-cols-[42px_52px_1fr_22px] sm:gap-4 sm:py-6">
+              <span className="text-xs font-black tracking-widest text-cyan-300">{number}</span>
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-cyan-200 sm:h-12 sm:w-12"><Icon size={22} /></span>
+              <div><h3 className="text-sm font-black sm:text-base">{title}</h3><p className="mt-1 text-xs leading-5 text-blue-100/70 sm:text-sm">{description}</p></div>
+              <Check size={19} className="text-cyan-300" />
             </article>
           ))}
         </div>
@@ -160,108 +244,26 @@ function ServiceList() {
   )
 }
 
-function TransparencyNotice() {
+function Reviews() {
   return (
-    <section className="notice-section">
-      <div className="container notice-layout">
-        <div className="notice-message">
-          <div className="notice-icon"><ShieldCheck size={30} /></div>
-          <p className="eyebrow">HONEST SERVICE PROMISE</p>
-          <h2>불안한 추가 요금,<br />해냄설비에는 없습니다.</h2>
-          <p className="notice-copy">작업 전 충분히 설명하고, 동의하신 범위 안에서만 작업합니다.<br />해결되지 않은 문제에 대해서는 비용을 청구하지 않습니다.</p>
-          <CallLink className="text-link">부담 없이 먼저 상담하기 <ArrowRight size={16} /></CallLink>
-        </div>
-        <div className="promise-list">
-          {promises.map(({ title, desc, icon: Icon }, index) => (
-            <article className="promise-row" key={title}>
-              <span className="promise-number">0{index + 1}</span>
-              <span className="promise-icon"><Icon size={23} /></span>
-              <div><h3>{title}</h3><p>{desc}</p></div>
-              <Check className="promise-check" size={19} />
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WorkProcess() {
-  return (
-    <section className="section section-process" id="process">
-      <div className="container">
-        <SectionHeading eyebrow="HOW WE WORK" title={<>상담부터 마무리까지,<br />투명하게</>} description={<>어떤 작업을 하는지, 비용은 얼마인지<br />먼저 확인하실 수 있습니다.</>} />
-        <div className="process-grid">
-          {process.map(({ step, title, desc, icon: Icon }, index) => (
-            <article className="process-card" key={title}>
-              <div className="process-top"><span>STEP 0{step}</span><Icon size={22} /></div>
-              <div className="process-marker"><span>{String(step).padStart(2, '0')}</span>{index < process.length - 1 && <i />}</div>
-              <h3>{title}</h3><p>{Array.isArray(desc) ? desc.map((line) => <span className="process-desc-line" key={line}>{line}</span>) : desc}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function FeatureStrengths() {
-  return (
-    <section className="section section-strengths">
-      <div className="container">
-        <SectionHeading eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description={<>작은 불편도 내 집처럼 살피고, 약속한 작업을<br />책임감 있게 마무리합니다.</>} />
-        <div className="strength-grid">
-          {strengths.map(({ title, desc, icon: Icon }, index) => (
-            <article className="strength-card" key={title}>
-              <div className="strength-index">0{index + 1}</div>
-              <div className="strength-icon"><Icon size={23} strokeWidth={1.8} /></div>
-              <h3>{title}</h3><p>{desc}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WorkGallery() {
-  return (
-    <section className="section section-gallery" id="gallery">
-      <div className="container">
-        <div className="gallery-heading-row">
-          <SectionHeading eyebrow="RECENT WORK" title="꼼꼼한 작업의 기록" description="현장 상황에 따라 점검하고, 필요한 곳을 정확하게 작업합니다." />
-          <span className="gallery-caption">작업 이미지 예시</span>
-        </div>
-        <div className="gallery-grid">
-          {galleryItems.map((item, index) => (
-            <article className="gallery-card" key={item.title}>
-              <div className="gallery-image-wrap">
-                <img src={item.image} alt={item.alt} loading="lazy" />
-                <span className="gallery-number">0{index + 1}</span>
-                <span className="gallery-tag">{item.category}</span>
+    <section id="reviews" className="bg-white px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle eyebrow="CUSTOMER REVIEWS" title="고객님이 남겨주신 이야기" description="친절한 설명과 꼼꼼한 작업으로 신뢰에 보답하겠습니다." />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {reviews.slice(0, 5).map((review) => (
+            <article key={`${review.name}-${review.service}`} className="flex min-h-[220px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex text-amber-400" aria-label={`${review.rating}점 리뷰`}>
+                  {Array.from({ length: review.rating }, (_, index) => <Star key={index} size={15} fill="currentColor" strokeWidth={1.5} />)}
+                </div>
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-[11px] font-bold text-blue-800">{review.service}</span>
               </div>
-              <div className="gallery-card-info"><h3>{item.title}</h3><span>현장 점검 · 맞춤 시공</span></div>
-            </article>
-          ))}
-        </div>
-        <p className="gallery-disclaimer">※ 이미지는 서비스 소개를 위한 참고 이미지입니다. 실제 작업 결과는 현장 상태에 따라 다를 수 있습니다.</p>
-      </div>
-    </section>
-  )
-}
-
-function ReviewGrid() {
-  return (
-    <section className="section section-reviews" id="reviews">
-      <div className="container">
-        <SectionHeading eyebrow="CUSTOMER REVIEWS" title="고객님이 전해주신 이야기" description="작업 과정과 결과에 만족해주신 고객님의 후기입니다." />
-        <div className="review-summary"><div className="review-stars">★★★★★</div><strong>고객님의 신뢰를 가장 소중히 생각합니다</strong><span>친절한 설명과 정직한 작업을 약속합니다</span></div>
-        <div className="review-grid">
-          {reviews.map((review) => (
-            <article className="review-card" key={`${review.name}-${review.service}`}>
-              <div className="review-card-top"><div className="stars" aria-label={`${review.rating}점 만점 ${review.rating}점`}>{Array.from({ length: review.rating }, (_, i) => <Star key={i} size={14} fill="currentColor" />)}</div><span className="review-service">{review.service}</span></div>
-              <p className="review-text">“{review.text}”</p>
-              <div className="review-author"><span className="author-avatar">{review.name.slice(0, 1)}</span><div><b>{review.name}</b><span><MapPin size={12} />{review.location}</span></div><BadgeCheck className="verified" size={18} /></div>
+              <p className="mt-5 flex-1 text-sm leading-7 text-slate-600">“{review.text}”</p>
+              <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-4">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-sm font-black text-slate-600">{review.name.slice(0, 1)}</span>
+                <div><p className="text-xs font-extrabold text-slate-800">{review.name}</p><p className="mt-0.5 text-[11px] text-slate-400">{review.location}</p></div>
+                <BadgeCheck className="ml-auto text-blue-600" size={18} />
+              </div>
             </article>
           ))}
         </div>
@@ -270,56 +272,53 @@ function ReviewGrid() {
   )
 }
 
-function BottomCTA() {
+function ContactFooter() {
   return (
-    <section className="bottom-cta" id="contact">
-      <div className="container cta-inner">
-        <div className="cta-icon"><PhoneCall size={26} /></div>
-        <div className="cta-copy"><p>지금 불편한 곳이 있으신가요?</p><h2>해냄설비가 빠르게 도와드릴게요.</h2><span>전화 주시면 증상부터 차근차근 상담해드립니다.</span></div>
-        <CallLink className="button button-light"><Phone size={18} /> {companyInfo.phone} <ArrowRight size={17} /></CallLink>
-      </div>
-    </section>
+    <>
+      <section id="contact" className="bg-blue-700 px-5 py-12 text-white sm:px-8 sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div><p className="text-xs font-extrabold tracking-widest text-blue-200">HAENAEM PLUMBING CARE</p><h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">불편한 순간, 해냄설비에 전화하세요.</h2><p className="mt-2 text-sm text-blue-100">증상을 듣고 가능한 방문 일정부터 안내해드립니다.</p></div>
+          <PhoneButton className="inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-white px-6 font-black text-blue-800 shadow-lg sm:w-auto"><PhoneCall size={20} /> {companyInfo.phone} <ArrowRight size={18} /></PhoneButton>
+        </div>
+      </section>
+      <footer className="bg-slate-950 px-5 py-8 text-slate-400 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2 text-white"><Droplets size={19} className="text-cyan-400" /><strong className="text-sm">해냄설비</strong></div>
+          <p className="text-xs">서울·수도권 배관케어 · 전화 상담 {companyInfo.phone}</p>
+          <p className="text-[11px]">© {new Date().getFullYear()} 해냄설비. All rights reserved.</p>
+        </div>
+      </footer>
+    </>
   )
 }
 
-function Footer() {
+function MobileActionBar() {
   return (
-    <footer className="site-footer">
-      <div className="container footer-main">
-        <div className="footer-brand"><a className="brand brand-footer" href="#home"><span className="brand-mark"><Droplets size={22} /></span><span>{companyInfo.name}<small>배관케어 전문</small></span></a><p>정직한 설명과 꼼꼼한 시공으로<br />우리 집 설비를 안전하게 지켜드립니다.</p></div>
-        <div className="footer-contact"><span>24시간 상담 예약</span><CallLink>{companyInfo.phone}</CallLink><small>서울·수도권 방문 상담</small></div>
-        <div className="footer-links"><a href="#services">서비스</a><a href="#process">작업과정</a><a href="#gallery">작업사례</a><a href="#reviews">고객후기</a></div>
-      </div>
-      <div className="container footer-bottom"><span>© {new Date().getFullYear()} 해냄설비. All rights reserved.</span><span>안전하고 정직한 배관케어</span></div>
-    </footer>
-  )
-}
-
-function MobileFloatingBar() {
-  return (
-    <div className="mobile-floating-bar">
-      <CallLink className="floating-call pulse"><PhoneCall size={18} /><span>전화걸기<small>{companyInfo.phone}</small></span></CallLink>
-      <a className="floating-kakao" href={kakaoLink} target="_blank" rel="noreferrer"><MessageCircle size={19} /><span>카카오톡 문의</span></a>
+    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-slate-200 bg-white/95 p-2.5 pb-[max(.625rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.12)] backdrop-blur md:hidden">
+      <a href={KAKAO_LINK} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#fee500] text-sm font-black text-[#251f00]">
+        <MessageCircle size={19} /> 카카오톡 문의
+      </a>
+      <PhoneButton className="call-pulse relative flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-black text-white shadow-md shadow-blue-200">
+        <PhoneCall size={19} /> 전화 상담
+      </PhoneButton>
     </div>
   )
 }
 
 export default function App() {
   return (
-    <>
+    <div className="min-h-screen bg-white pb-20 font-sans text-slate-900 md:pb-0">
+      <style>{`@keyframes callPulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,.42)}70%{box-shadow:0 0 0 11px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}.call-pulse{animation:callPulse 2s infinite}@media(prefers-reduced-motion:reduce){.call-pulse{animation:none}}`}</style>
       <Header />
       <main>
-        <HeroSection />
-        <ServiceList />
-        <TransparencyNotice />
-        <WorkProcess />
-        <FeatureStrengths />
-        <WorkGallery />
-        <ReviewGrid />
-        <BottomCTA />
+        <Hero />
+        <ServiceGrid />
+        <BeforeAfter />
+        <Promises />
+        <Reviews />
+        <ContactFooter />
       </main>
-      <Footer />
-      <MobileFloatingBar />
-    </>
+      <MobileActionBar />
+    </div>
   )
 }
