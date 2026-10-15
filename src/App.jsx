@@ -66,10 +66,10 @@ function PhoneLink({ children, className = '', ...props }) {
 
 function SectionHeading({ eyebrow, title, description }) {
   return (
-    <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-12">
-      <p className="mb-3 inline-flex min-h-9 items-center rounded-full bg-blue-50 px-3 text-sm font-black text-blue-800 sm:min-h-10 sm:px-4 sm:text-base">{eyebrow}</p>
-      <h2 className="break-keep text-[clamp(1.55rem,6vw,2.5rem)] font-black leading-tight tracking-[-.04em] text-slate-900">{title}</h2>
-      {description && <p className="mx-auto mt-3 max-w-xl break-keep text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base sm:leading-7">{description}</p>}
+    <div className="mx-auto mb-6 max-w-2xl text-center sm:mb-9">
+      <p className="mb-2 inline-flex min-h-9 items-center rounded-full bg-blue-50 px-3 text-sm font-black text-blue-800 sm:min-h-10 sm:px-4 sm:text-base">{eyebrow}</p>
+      <h2 className="break-keep text-[clamp(1.55rem,6vw,2.5rem)] font-black leading-[1.25] tracking-[-.04em] text-slate-900">{title}</h2>
+      {description && <p className="mx-auto mt-2 max-w-xl break-keep text-sm leading-6 text-slate-600 sm:mt-3 sm:text-base sm:leading-7">{description}</p>}
     </div>
   )
 }
@@ -153,7 +153,7 @@ function Hero() {
 
 function ServiceGrid() {
   return (
-    <section id="services" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
+    <section id="services" className="scroll-mt-20 bg-slate-50 px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="해냄설비 주요 서비스" title="막힘부터 누수까지, 한 번에" description="현장을 꼼꼼히 확인하고 문제에 맞는 방법으로 작업합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
@@ -181,7 +181,7 @@ function ServiceGrid() {
 
 function BeforeAfter() {
   return (
-    <section id="work" className="scroll-mt-20 bg-white px-4 py-14 sm:px-7 sm:py-20">
+    <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <SectionHeading eyebrow="작업 전 · 작업 후 비교" title="막힌 배관, 달라진 흐름" description="작업 전후 배관 상태를 한눈에 비교해보세요." />
         <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm sm:rounded-3xl">
@@ -198,10 +198,10 @@ function BeforeAfter() {
 
 function PromiseSection() {
   return (
-    <section id="promise" className="scroll-mt-20 overflow-hidden bg-slate-900 px-4 py-14 text-white sm:px-7 sm:py-20">
+    <section id="promise" className="scroll-mt-20 overflow-hidden bg-slate-900 px-4 py-10 text-white sm:px-7 sm:py-16">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-16">
         <div>
-          <p className="mb-2 text-[11px] font-extrabold uppercase tracking-[.18em] text-cyan-300 sm:text-xs">HONEST SERVICE</p>
+          <p className="mb-2 text-sm font-black text-cyan-300 sm:text-base">정직한 시공 약속</p>
           <h2 className="break-keep text-3xl font-black leading-tight tracking-tight sm:text-5xl">상담부터 마무리까지,<br />투명하게</h2>
           <p className="mt-4 max-w-lg break-keep text-sm leading-7 text-slate-300 sm:mt-5 sm:text-base">작업 전 충분히 설명하고, 동의하신 범위 안에서만 작업합니다. 해결되지 않은 문제에는 비용을 청구하지 않습니다.</p>
           <PhoneLink className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-slate-900 transition hover:bg-cyan-50">
@@ -225,13 +225,13 @@ function PromiseSection() {
 
 function ProcessSection() {
   return (
-    <section id="process" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
+    <section id="process" className="scroll-mt-20 bg-slate-50 px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="간편한 작업 과정" title="접수부터 책임 시공까지" description="작업 범위와 비용을 먼저 안내한 뒤, 합의된 내용대로 진행합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {workProcess.map(({ step, title, desc, icon: Icon }) => (
             <article key={step} className="rounded-2xl border border-slate-200 bg-white p-4 sm:rounded-3xl sm:p-6">
-              <div className="flex items-center justify-between"><span className="text-[10px] font-extrabold tracking-widest text-blue-700 sm:text-xs">STEP 0{step}</span><span className="grid size-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:size-11"><Icon size={19} /></span></div>
+              <div className="flex items-center justify-between"><span className="text-xs font-extrabold tracking-wide text-blue-700 sm:text-sm">0{step} 단계</span><span className="grid size-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:size-11"><Icon size={19} /></span></div>
               <h3 className="mt-4 break-keep text-base font-black text-slate-900 sm:mt-5 sm:text-lg">{title}</h3>
               <p className="mt-2 hidden text-xs leading-6 text-slate-600 sm:block sm:text-sm">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
             </article>
@@ -244,7 +244,7 @@ function ProcessSection() {
 
 function StrengthSection() {
   return (
-    <section className="bg-white px-4 py-14 sm:px-7 sm:py-20">
+    <section className="bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="해냄설비가 다른 이유" title="해냄설비를 선택하는 이유" description="꼼꼼한 점검과 정직한 설명으로 믿을 수 있는 서비스를 제공합니다." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
@@ -263,7 +263,7 @@ function StrengthSection() {
 
 function Reviews() {
   return (
-    <section id="reviews" className="scroll-mt-20 bg-slate-50 px-4 py-14 sm:px-7 sm:py-20">
+    <section id="reviews" className="scroll-mt-20 bg-slate-50 px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="고객님들의 이용 후기" title="고객님이 남겨주신 후기" description="상담과 작업 과정에서 느끼신 점을 확인해보세요." />
         <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
@@ -292,8 +292,8 @@ function ContactFooter() {
   return (
     <>
       <section id="contact" className="bg-blue-700 px-4 py-10 text-white sm:px-7 sm:py-14">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
-          <div><p className="text-[11px] font-extrabold tracking-[.16em] text-blue-100">HAENAEM PLUMBING CARE</p><h2 className="mt-2 break-keep text-2xl font-black tracking-tight sm:text-3xl">불편한 순간, 해냄설비에 전화하세요.</h2><p className="mt-2 text-sm text-blue-100">증상을 듣고 가능한 방문 일정을 안내해드립니다.</p></div>
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 sm:flex-row sm:items-center sm:gap-5">
+          <div><p className="text-sm font-black text-blue-100 sm:text-base">해냄설비 배관·설비 상담</p><h2 className="mt-2 break-keep text-2xl font-black tracking-tight sm:text-3xl">불편한 순간, 해냄설비에 전화하세요.</h2><p className="mt-2 text-sm leading-6 text-blue-100">증상을 듣고 가능한 방문 일정을 안내해드립니다.</p></div>
           <PhoneLink className="flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-white px-6 font-black text-blue-800 shadow-lg sm:w-auto"><PhoneCall size={20} /> {companyInfo.phone} <ArrowRight size={18} /></PhoneLink>
         </div>
       </section>
@@ -301,7 +301,7 @@ function ContactFooter() {
         <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <a href="#home" className="inline-flex min-h-12 items-center gap-2 font-black text-white"><Droplets size={19} className="text-cyan-400" />{companyInfo.name}</a>
           <p className="text-xs">배관·설비 상담 <PhoneLink className="font-bold text-white">{companyInfo.phone}</PhoneLink></p>
-          <p className="text-[11px] text-slate-400">© {new Date().getFullYear()} 해냄설비. All rights reserved.</p>
+          <p className="text-[11px] text-slate-400">© {new Date().getFullYear()} 해냄설비</p>
         </div>
       </footer>
     </>
