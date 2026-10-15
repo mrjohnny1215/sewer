@@ -138,17 +138,17 @@ function Header() {
 
 function DispatchBoard() {
   return (
-    <section className="dispatch-board mx-auto w-full max-w-md border-t border-white/10 bg-[#0b1b30] px-4 py-3 text-center text-white sm:rounded-b-2xl sm:border sm:border-t-0 sm:border-white/10 sm:px-6 sm:py-4" aria-label="실시간 배차 안내">
-      <div className="mb-1.5 flex items-center justify-center gap-2">
+    <section className="dispatch-board mx-auto w-full max-w-md border-t border-amber-300/30 bg-gradient-to-b from-[#10243c] to-[#07182a] px-4 py-4 text-center text-white sm:rounded-b-2xl sm:border sm:border-t-0 sm:border-amber-300/20 sm:px-6 sm:py-5" aria-label="실시간 배차 안내">
+      <div className="mb-2 flex items-center justify-center gap-2">
         <span className="relative flex size-3 shrink-0">
           <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
         </span>
         <span className="text-xs font-bold tracking-wide text-emerald-300 sm:text-sm">실시간 배차 시스템 가동 중</span>
       </div>
-      <p className="text-[11px] font-bold text-slate-300 sm:text-sm">평균 출동 안내</p>
-      <div className="timer-flash pt-0.5 text-[clamp(2rem,10vw,2.65rem)] font-black leading-tight tracking-tight text-amber-400 drop-shadow-[0_0_18px_rgba(251,191,36,0.45)] sm:text-5xl">
-        28분 <span className="px-1 text-amber-200 sm:px-2">~</span> 33분
+      <p className="text-xs font-extrabold tracking-wide text-white/80 sm:text-sm">평균 현장 도착 시간</p>
+      <div className="timer-flash mt-1 text-[clamp(2.65rem,13vw,3.5rem)] font-black leading-none tracking-tight text-[#ffd34f] drop-shadow-[0_0_22px_rgba(255,190,35,0.75)] sm:text-6xl">
+        28분 <span className="px-0.5 text-amber-100/90 sm:px-2">~</span> 33분
       </div>
     </section>
   )
