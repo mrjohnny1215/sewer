@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   Check,
   ChevronRight,
+  Clock3,
   Droplets,
   FileCheck2,
   Menu,
@@ -122,17 +123,32 @@ function Header() {
 function Hero() {
   return (
     <section id="home" className="overflow-hidden bg-slate-50 px-3 py-3 sm:px-6 sm:py-6">
-      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-slate-200 bg-[#07182a] shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
-        <img
-          src="/img/hero_banner.png"
-          alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
-          width="2752"
-          height="1536"
-          fetchPriority="high"
-          decoding="async"
-          className="block h-auto w-full object-contain"
-        />
-        <TrustBadges />
+      <div className="mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
+        <div className="flex min-h-14 items-center justify-between gap-2 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-3 py-2.5 sm:min-h-[76px] sm:px-6 sm:py-3">
+          <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+            <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-700 text-white shadow-sm sm:size-11"><Droplets size={21} /></span>
+            <div className="min-w-0">
+              <p className="truncate text-base font-black tracking-tight text-slate-900 sm:text-xl">해냄설비</p>
+              <p className="hidden text-[10px] font-semibold text-slate-500 sm:block sm:text-xs">막힘부터 누수까지 꼼꼼하게</p>
+            </div>
+          </div>
+          <div className="time-pulse flex shrink-0 items-center gap-1.5 rounded-xl border border-blue-200 bg-white px-2.5 py-1.5 text-blue-800 shadow-sm sm:gap-2.5 sm:rounded-2xl sm:px-4 sm:py-2">
+            <Clock3 className="shrink-0 text-blue-600" size={19} />
+            <span className="leading-tight"><span className="block text-[9px] font-bold text-slate-500 sm:text-[11px]">평균 출동</span><strong className="block whitespace-nowrap text-sm font-black tracking-tight sm:text-lg">28~33분</strong></span>
+          </div>
+        </div>
+        <div className="relative overflow-hidden bg-[#07182a]">
+          <img
+            src="/img/hero_banner.png"
+            alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
+            width="2752"
+            height="1536"
+            fetchPriority="high"
+            decoding="async"
+            className="block h-auto w-full object-contain"
+          />
+          <TrustBadges />
+        </div>
       </div>
       <div className="mx-auto mt-3 max-w-[1440px] sm:mt-5">
         <PhoneLink className="call-pulse flex min-h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-blue-700 px-4 text-base font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:min-h-16 sm:text-lg">
@@ -338,7 +354,7 @@ function MobileActionBar() {
 export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white pb-24 font-sans text-slate-900 md:pb-0">
-      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.badge-float{animation:badgeFloat 3.2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.badge-float{animation:none}}`}</style>
+      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}@keyframes timePulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.08);transform:translateY(0)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0);transform:translateY(-1px)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.badge-float{animation:badgeFloat 3.2s ease-in-out infinite}.time-pulse{animation:timePulse 2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.badge-float,.time-pulse{animation:none}}`}</style>
       <Header />
       <main>
         <Hero />
