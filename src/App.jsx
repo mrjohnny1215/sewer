@@ -126,10 +126,16 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="relative isolate min-h-[640px] overflow-hidden bg-slate-950 text-white sm:min-h-[680px]">
-      <img src="/img/hero_banner.png" alt="해냄설비 전문 배관 점검 현장" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/15" />
-      <div className="mx-auto flex min-h-[640px] max-w-7xl items-center px-5 py-16 sm:min-h-[680px] sm:px-8">
+    <section id="home" className="relative isolate overflow-hidden bg-slate-950 text-white sm:min-h-[680px]">
+      <img src="/img/hero_banner.png" alt="역류하고 막혀 답답할 땐 해냄설비가 시원하게 뚫어냅니다" className="relative z-0 block h-auto w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-center" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/15 sm:block" />
+      <div className="bg-slate-950 px-5 py-6 sm:hidden">
+        <PhoneButton className="call-pulse flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 text-sm font-black text-white shadow-xl shadow-blue-950/30">
+          <PhoneCall size={20} /> <span>무료 전화상담 <span className="ml-1 font-semibold">010-4154-0084</span></span> <ArrowRight size={18} />
+        </PhoneButton>
+        <p className="mt-3 text-center text-xs text-white/65">24시간 상담 예약 · 전화 한 통으로 편하게 문의하세요</p>
+      </div>
+      <div className="mx-auto hidden min-h-[640px] max-w-7xl items-center px-5 py-16 sm:flex sm:min-h-[680px] sm:px-8">
         <div className="max-w-3xl">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-wide text-blue-100 backdrop-blur-sm sm:text-sm">
             <span className="h-2 w-2 rounded-full bg-cyan-300" /> 서울·수도권 배관케어 전문
@@ -177,8 +183,8 @@ function ServiceGrid() {
             const Icon = service.icon
             return (
               <article key={service.title} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5">
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div className="relative aspect-square overflow-hidden bg-white p-1 sm:aspect-[4/3] sm:bg-slate-50 sm:p-0">
+                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.02] sm:object-cover sm:group-hover:scale-105" />
                   <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-black text-blue-800 shadow-sm sm:left-4 sm:top-4 sm:px-3 sm:text-xs">0{index + 1}</span>
                 </div>
                 <div className="p-3.5 sm:p-5">
