@@ -44,10 +44,10 @@ const serviceSummaries = [
 ]
 
 const processImages = [
-  '/img/service_drain.png',
-  '/img/service_leak.png',
-  '/img/service_pipe.png',
-  '/img/service_toilet.png',
+  '/img/process_intake.png',
+  '/img/process_inspection.png',
+  '/img/process_estimate.png',
+  '/img/process_completion.png',
 ]
 
 const processImageAlts = [
@@ -258,16 +258,15 @@ function ProcessSection() {
         </div>
         <div className="process-visual-grid grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8">
           {workProcess.map(({ step, title, desc }, index) => (
-            <article key={step} className="process-visual-card min-w-0">
-              <div className="process-visual-marker mb-3 flex items-center gap-2">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-[10px] font-black text-white sm:size-7 sm:text-xs">0{step}</span>
-                <span className="h-px flex-1 border-t border-dashed border-blue-300" />
-                {step < workProcess.length && <span className="size-2 shrink-0 rounded-full bg-blue-500" />}
+            <article key={step} className="min-w-0 rounded-2xl border border-slate-200 bg-white p-2.5 shadow-sm sm:rounded-3xl sm:p-4">
+              <div className="mb-2.5 flex items-center gap-2 sm:mb-3">
+                <span className="inline-flex min-h-6 items-center rounded-full bg-blue-600 px-2.5 text-[9px] font-black tracking-wide text-white sm:min-h-7 sm:px-3 sm:text-[10px]">STEP 0{step}</span>
+                <span className="h-px flex-1 bg-slate-100" />
               </div>
-              <h3 className="break-keep text-[15px] font-black leading-5 text-slate-900 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
-              <p className="mt-1.5 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
-              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:mt-3 sm:rounded-2xl">
-                <img src={processImages[index]} alt={processImageAlts[index]} width="338" height="220" loading="lazy" decoding="async" className="block h-full w-full object-cover object-top" />
+              <h3 className="min-h-10 break-keep text-[15px] font-black leading-5 text-slate-900 sm:min-h-12 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
+              <p className="mt-1 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl bg-slate-100 sm:mt-3 sm:rounded-2xl">
+                <img src={processImages[index]} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
               </div>
             </article>
           ))}
