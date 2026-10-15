@@ -34,6 +34,15 @@ const serviceImageAlts = [
   '상하수도와 배관 공사',
 ]
 
+const serviceSummaries = [
+  '변기와 배관의 막힘 원인을 확인합니다.',
+  '악취와 역류 원인을 살펴 배관을 청소합니다.',
+  '주방 배수 정체와 역류 상태를 점검합니다.',
+  '누수 의심 부위를 확인해 수리 범위를 안내합니다.',
+  '수전과 밸브 등 필요한 부품을 교체합니다.',
+  '상하수도 배관과 방수 상태를 점검합니다.',
+]
+
 const promises = [
   {
     title: '원인 사전 설명',
@@ -157,27 +166,23 @@ function Hero() {
 
 function ServiceGrid() {
   return (
-    <section id="services" className="scroll-mt-20 bg-slate-50 px-4 py-9 sm:px-7 sm:py-16">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="해냄설비 주요 서비스" title="막힘부터 누수까지, 한 번에" description="현장을 꼼꼼히 확인하고 문제에 맞는 방법으로 작업합니다." />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
-          {services.map((service, index) => {
-            const Icon = service.icon
-            return (
-              <article key={service.title} className="group min-w-0 overflow-hidden rounded-2xl border border-slate-100 bg-white p-2.5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg sm:rounded-3xl sm:p-4">
-                <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="aspect-square w-full rounded-xl object-contain sm:rounded-2xl" />
-                <div className="flex min-h-12 items-center gap-2 px-1 pt-2 sm:min-h-14 sm:px-2">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700 sm:size-9"><Icon size={17} /></span>
-                  <h3 className="min-w-0 break-keep text-[13px] font-black leading-5 text-slate-900 sm:text-base">{service.title}</h3>
-                </div>
-                <p className="hidden px-2 pb-1 pt-1 text-sm leading-6 text-slate-600 sm:block">{service.desc}</p>
-                <PhoneLink className="mt-1 flex min-h-12 items-center gap-1.5 rounded-xl px-2 text-xs font-extrabold text-blue-700 hover:bg-blue-50 sm:mt-2 sm:text-sm">
-                  <Phone size={14} /> 전화 상담 <ChevronRight size={15} />
-                </PhoneLink>
-              </article>
-            )
-          })}
+    <section id="services" className="scroll-mt-20 bg-sky-50 px-4 py-9 sm:px-7 sm:py-16">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading eyebrow="해냄설비 주요 서비스" title="막힘부터 누수까지" description="현장을 확인하고 필요한 작업과 비용을 먼저 안내합니다." />
+        <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-4">
+          {services.map((service, index) => (
+            <PhoneLink key={service.title} aria-label={`${service.title} 전화 상담`} className="group flex min-h-[94px] min-w-0 items-center gap-3 rounded-2xl border border-sky-200 bg-white p-2.5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:min-h-[112px] sm:gap-4 sm:p-3">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-500 sm:size-8"><Check size={18} strokeWidth={3} /></span>
+              <span className="min-w-0 flex-1">
+                <span className="block break-keep text-[15px] font-black leading-5 text-slate-900 sm:text-base">{service.title}</span>
+                <span className="mt-1 block break-keep text-[11px] leading-[1.45] text-slate-600 sm:text-xs">{serviceSummaries[index]}</span>
+                <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-extrabold text-blue-700 sm:text-[11px]">전화 상담 <ChevronRight size={12} /></span>
+              </span>
+              <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="h-[62px] w-[82px] shrink-0 rounded-xl border border-slate-100 object-cover object-top sm:h-[78px] sm:w-[102px]" />
+            </PhoneLink>
+          ))}
         </div>
+        <p className="mx-auto mt-4 max-w-max rounded-full bg-slate-900 px-4 py-2 text-center text-[10px] font-semibold leading-4 text-white sm:mt-5 sm:text-xs">※ 작업 범위와 비용은 현장 상태를 확인한 뒤 안내해드립니다.</p>
       </div>
     </section>
   )
