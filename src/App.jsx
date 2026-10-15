@@ -194,7 +194,7 @@ function ServiceGrid() {
                 <span className="mt-1 block break-keep text-[11px] leading-[1.45] text-slate-600 sm:text-xs">{serviceSummaries[index]}</span>
                 <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-extrabold text-blue-700 sm:text-[11px]">전화 상담 <ChevronRight size={12} /></span>
               </span>
-              <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="h-[62px] w-[82px] shrink-0 rounded-xl border border-slate-100 object-cover object-top sm:h-[78px] sm:w-[102px]" />
+              <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="h-[62px] w-[82px] shrink-0 rounded-xl border border-slate-100 bg-white object-contain p-0.5 sm:h-[78px] sm:w-[102px]" />
             </PhoneLink>
           ))}
         </div>
