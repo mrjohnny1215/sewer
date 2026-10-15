@@ -178,23 +178,16 @@ function ServiceGrid() {
           title="막힘부터 누수까지, 한 번에"
           description="가정에서 자주 발생하는 배관 문제를 현장에 맞는 방법으로 해결합니다."
         />
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7 lg:grid-cols-3">
           {services.map((service, index) => {
-            const Icon = service.icon
             return (
-              <article key={service.title} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5">
-                <div className="relative aspect-square overflow-hidden bg-white p-1 sm:aspect-[4/3] sm:bg-slate-50 sm:p-0">
-                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.02] sm:object-cover sm:group-hover:scale-105" />
-                  <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-black text-blue-800 shadow-sm sm:left-4 sm:top-4 sm:px-3 sm:text-xs">0{index + 1}</span>
-                </div>
-                <div className="p-3.5 sm:p-5">
-                  <div className="flex items-center gap-2">
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700 sm:h-9 sm:w-9"><Icon size={18} /></span>
-                    <h3 className="text-sm font-black tracking-tight text-slate-900 sm:text-lg">{service.title}</h3>
-                  </div>
-                  <p className="mt-3 hidden text-sm leading-6 text-slate-500 sm:block">{service.desc}</p>
-                  <a href="#contact" className="mt-3 inline-flex items-center gap-1 text-xs font-extrabold text-blue-700 sm:mt-4 sm:text-sm">상담 문의 <ChevronRight size={15} /></a>
-                </div>
+              <article key={service.title} className="group min-w-0">
+                <a href="#contact" aria-label={`${service.title} 상담 문의`} className="block overflow-hidden rounded-2xl bg-white transition duration-300 hover:-translate-y-1">
+                  <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="aspect-square w-full object-contain" />
+                </a>
+                <a href={PHONE_LINK} className="mt-2 flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700 sm:text-sm">
+                  <Phone size={14} /> 전화 상담 <ChevronRight size={14} />
+                </a>
               </article>
             )
           })}
