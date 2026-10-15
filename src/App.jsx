@@ -187,15 +187,14 @@ function ServiceGrid() {
         <SectionHeading eyebrow="해냄설비 주요 서비스" title="막힘부터 누수까지" description="현장을 확인하고 필요한 작업과 비용을 먼저 안내합니다." />
         <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-4">
           {services.map((service, index) => (
-            <PhoneLink key={service.title} aria-label={`${service.title} 전화 상담`} className="group flex min-h-[94px] min-w-0 items-center gap-3 rounded-2xl border border-sky-200 bg-white p-2.5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:min-h-[112px] sm:gap-4 sm:p-3">
+            <article key={service.title} className="flex min-h-[94px] min-w-0 items-center gap-3 rounded-2xl border border-sky-200 bg-white p-2.5 shadow-sm sm:min-h-[112px] sm:gap-4 sm:p-3">
               <span className="grid size-7 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-500 sm:size-8"><Check size={18} strokeWidth={3} /></span>
               <span className="min-w-0 flex-1">
                 <span className="block break-keep text-[15px] font-black leading-5 text-slate-900 sm:text-base">{service.title}</span>
                 <span className="mt-1 block break-keep text-[11px] leading-[1.45] text-slate-600 sm:text-xs">{serviceSummaries[index]}</span>
-                <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-extrabold text-blue-700 sm:text-[11px]">전화 상담 <ChevronRight size={12} /></span>
               </span>
               <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="h-[62px] w-[82px] shrink-0 rounded-xl border border-slate-100 bg-white object-contain p-0.5 sm:h-[78px] sm:w-[102px]" />
-            </PhoneLink>
+            </article>
           ))}
         </div>
         <p className="mx-auto mt-4 max-w-max rounded-full bg-slate-900 px-4 py-2 text-center text-[10px] font-semibold leading-4 text-white sm:mt-5 sm:text-xs">※ 작업 범위와 비용은 현장 상태를 확인한 뒤 안내해드립니다.</p>
