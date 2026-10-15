@@ -23,19 +23,16 @@ const workPhotos = [
     image: 'https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=1100&q=85',
     alt: '욕실 배관을 점검하는 설비 기사',
     title: '욕실 배관 점검',
-    credit: 'Bhagya Laxmi / Unsplash',
   },
   {
     image: 'https://images.unsplash.com/photo-1654440122140-f1fc995ddb34?auto=format&fit=crop&w=1100&q=85',
     alt: '세면대 배수구와 배관 상태',
     title: '배수구 상태 확인',
-    credit: 'Daniel Dan / Unsplash',
   },
   {
     image: 'https://images.unsplash.com/photo-1758400826781-a350d02cda6e?auto=format&fit=crop&w=1100&q=85',
     alt: '수전과 물 흐름 점검',
     title: '수전·연결부 점검',
-    credit: 'Jatin Saini / Unsplash',
   },
 ]
 
@@ -232,12 +229,10 @@ function WorkGallery() {
               <img src={photo.image} alt={photo.alt} loading="lazy" className="aspect-[4/3] w-full object-cover transition duration-500 hover:scale-[1.02]" />
               <figcaption className="flex items-center justify-between gap-2 px-4 py-4">
                 <span className="text-sm font-extrabold text-slate-900">{photo.title}</span>
-                <span className="text-[9px] text-slate-400">{photo.credit}</span>
               </figcaption>
             </figure>
           ))}
         </div>
-        <p className="mt-4 text-center text-[11px] text-slate-400">사진은 서비스 이해를 돕기 위한 참고 이미지입니다.</p>
       </div>
     </section>
   )
