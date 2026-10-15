@@ -161,7 +161,7 @@ function Hero() {
         <div className="overflow-hidden bg-[#07182a]">
           <div className="hero-banner relative">
             <img
-              src="/img/hero_banner.png"
+              src="/img/Code_Generated_Image.gif"
               alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
               width="1024"
               height="572"
