@@ -15,7 +15,7 @@ import {
   Star,
 } from 'lucide-react'
 import { useState } from 'react'
-import { companyInfo, reviews, services } from './data/siteData'
+import { companyInfo, process as workProcess, reviews, services, strengths } from './data/siteData'
 
 const PHONE_LINK = 'tel:010-4154-0084'
 const KAKAO_LINK = 'https://pf.kakao.com/'
@@ -182,15 +182,59 @@ function ServiceGrid() {
           {services.map((service, index) => {
             return (
               <article key={service.title} className="group min-w-0">
-                <a href="#contact" aria-label={`${service.title} 상담 문의`} className="block overflow-hidden rounded-2xl bg-white transition duration-300 hover:-translate-y-1">
+                <div className="overflow-hidden rounded-2xl bg-white transition duration-300 group-hover:-translate-y-1">
                   <img src={serviceImages[index]} alt={`${service.title} 서비스`} loading="lazy" className="aspect-square w-full object-contain" />
-                </a>
+                </div>
                 <a href={PHONE_LINK} className="mt-2 flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700 sm:text-sm">
                   <Phone size={14} /> 전화 상담 <ChevronRight size={14} />
                 </a>
               </article>
             )
           })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ProcessSection() {
+  return (
+    <section className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle eyebrow="HOW WE WORK" title="상담부터 마무리까지, 투명하게" description="작업 범위와 비용을 먼저 안내하고 동의하신 내용대로 진행합니다." />
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+          {workProcess.map(({ step, title, desc, icon: Icon }) => (
+            <article key={step} className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-6">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold tracking-[0.15em] text-blue-700 sm:text-xs">STEP 0{step}</span>
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:h-11 sm:w-11"><Icon size={20} /></span>
+              </div>
+              <h3 className="mt-4 text-base font-black text-slate-900 sm:mt-6 sm:text-lg">{title}</h3>
+              <p className="mt-2 text-xs leading-6 text-slate-500 sm:text-sm">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function StrengthSection() {
+  return (
+    <section className="bg-white px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle eyebrow="WHY HAENAEM" title="해냄설비를 선택하는 이유" description="현장에 맞는 방법으로 꼼꼼하게 살피고, 작업 후까지 확인합니다." />
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+          {strengths.map(({ title, desc, icon: Icon }, index) => (
+            <article key={title} className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:shadow-lg hover:shadow-blue-950/5 sm:p-6">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-bold tracking-widest text-slate-300">0{index + 1}</span>
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:h-11 sm:w-11"><Icon size={20} /></span>
+              </div>
+              <h3 className="mt-3 text-sm font-black text-slate-900 sm:mt-5 sm:text-base">{title}</h3>
+              <p className="mt-2 text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6">{desc}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -312,8 +356,10 @@ export default function App() {
       <main>
         <Hero />
         <ServiceGrid />
-        <BeforeAfter />
         <Promises />
+        <ProcessSection />
+        <StrengthSection />
+        <BeforeAfter />
         <Reviews />
         <ContactFooter />
       </main>
