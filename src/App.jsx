@@ -43,6 +43,22 @@ const serviceSummaries = [
   '상하수도 배관과 방수 상태를 점검합니다.',
 ]
 
+const processImages = [
+  '/img/service_drain.png',
+  '/img/service_leak.png',
+  '/img/service_pipe.png',
+  '/img/service_toilet.png',
+]
+
+const processImageAlts = [
+  '배관 문제 상담 접수',
+  '배관 내시경 장비로 현장 점검',
+  '작업 범위와 견적 안내',
+  '변기 배관 작업 후 상태 확인',
+]
+
+const processTitles = ['상담 접수', '현장 점검', '견적 안내 및 동의', '작업 후 상태 확인']
+
 const promises = [
   {
     title: '원인 사전 설명',
@@ -234,15 +250,26 @@ function PromiseSection() {
 
 function ProcessSection() {
   return (
-    <section id="process" className="scroll-mt-20 bg-slate-50 px-4 py-9 sm:px-7 sm:py-16">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="간편한 작업 과정" title="접수부터 책임 시공까지" description={<>작업 범위와 비용을 먼저 안내한 뒤,<br />합의된 내용대로 진행합니다.</>} />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {workProcess.map(({ step, title, desc, icon: Icon }) => (
-            <article key={step} className="rounded-2xl border border-slate-200 bg-white p-4 sm:rounded-3xl sm:p-6">
-              <div className="flex items-center justify-between"><span className="text-xs font-extrabold tracking-wide text-blue-700 sm:text-sm">0{step} 단계</span><span className="grid size-9 place-items-center rounded-xl bg-blue-50 text-blue-700 sm:size-11"><Icon size={19} /></span></div>
-              <h3 className="mt-4 break-keep text-base font-black text-slate-900 sm:mt-5 sm:text-lg">{title}</h3>
-              <p className="mt-2 hidden text-xs leading-6 text-slate-600 sm:block sm:text-sm">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+    <section id="process" className="scroll-mt-20 bg-[#fffdf8] px-4 py-10 sm:px-7 sm:py-16">
+      <div className="mx-auto max-w-5xl">
+        <div className="mx-auto mb-7 max-w-2xl text-center sm:mb-10">
+          <p className="mb-2 text-sm font-black text-orange-500 sm:text-base">문제 원인부터 해결까지</p>
+          <h2 className="break-keep text-[clamp(1.65rem,6vw,2.7rem)] font-black leading-[1.2] tracking-[-.045em] text-slate-900">체계적인 <span className="text-blue-600">작업 과정</span></h2>
+          <p className="mx-auto mt-2 max-w-xl break-keep text-sm leading-6 text-slate-600 sm:mt-3 sm:text-base sm:leading-7">작업 범위와 비용을 먼저 안내한 뒤,<br />합의된 내용대로 진행합니다.</p>
+        </div>
+        <div className="process-visual-grid grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8">
+          {workProcess.map(({ step, title, desc }, index) => (
+            <article key={step} className="process-visual-card min-w-0">
+              <div className="process-visual-marker mb-3 flex items-center gap-2">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-[10px] font-black text-white sm:size-7 sm:text-xs">0{step}</span>
+                <span className="h-px flex-1 border-t border-dashed border-blue-300" />
+                {step < workProcess.length && <span className="size-2 shrink-0 rounded-full bg-blue-500" />}
+              </div>
+              <h3 className="break-keep text-[15px] font-black leading-5 text-slate-900 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
+              <p className="mt-1.5 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:mt-3 sm:rounded-2xl">
+                <img src={processImages[index]} alt={processImageAlts[index]} width="338" height="220" loading="lazy" decoding="async" className="block h-full w-full object-cover object-top" />
+              </div>
             </article>
           ))}
         </div>
