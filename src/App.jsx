@@ -5,7 +5,6 @@ import {
   Droplets,
   FileCheck2,
   Menu,
-  MessageCircle,
   Phone,
   PhoneCall,
   ShieldCheck,
@@ -15,7 +14,6 @@ import { useState } from 'react'
 import { companyInfo, process as workProcess, reviews, services, strengths } from './data/siteData'
 
 const PHONE_LINK = 'tel:010-4154-0084'
-const KAKAO_LINK = 'https://pf.kakao.com/'
 
 const serviceImages = [
   '/img/service_toilet.png',
@@ -310,11 +308,8 @@ function ContactFooter() {
 
 function MobileActionBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex gap-2 border-t border-slate-200 bg-white/95 p-3 pb-[max(.75rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
-      <a href={KAKAO_LINK} target="_blank" rel="noreferrer" className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[#fee500] px-2 text-sm font-black text-[#332d08]" aria-label="카카오톡 문의 열기">
-        <MessageCircle size={19} /> 카카오톡 문의
-      </a>
-      <PhoneLink className="call-pulse flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-blue-700 px-2 text-sm font-black text-white" aria-label={`전화걸기 ${companyInfo.phone}`}>
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 p-3 pb-[max(.75rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
+      <PhoneLink className="call-pulse flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-blue-700 px-3 text-sm font-black text-white" aria-label={`전화걸기 ${companyInfo.phone}`}>
         <PhoneCall size={19} /> 전화걸기
       </PhoneLink>
     </div>
