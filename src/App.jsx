@@ -131,7 +131,7 @@ function DispatchBoard() {
 
 function Hero() {
   return (
-    <section id="home" className="overflow-hidden bg-slate-50 pb-5 pt-2 sm:px-6 sm:pb-8 sm:pt-6">
+    <section id="home" className="overflow-hidden bg-[#07182a] pb-5 pt-2 sm:px-6 sm:pb-8 sm:pt-6">
       <div className="mx-auto max-w-5xl">
         <div className="overflow-hidden bg-[#07182a] shadow-xl sm:rounded-2xl sm:border sm:border-slate-200">
           <img
