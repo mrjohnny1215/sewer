@@ -122,7 +122,7 @@ function Header() {
 function Hero() {
   return (
     <section id="home" className="overflow-hidden bg-slate-50 px-3 py-3 sm:px-6 sm:py-6">
-      <div className="mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-slate-200 bg-[#07182a] shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-slate-200 bg-[#07182a] shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
         <img
           src="/img/hero_banner.png"
           alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
@@ -132,6 +132,7 @@ function Hero() {
           decoding="async"
           className="block h-auto w-full object-contain"
         />
+        <TrustBadges />
       </div>
       <div className="mx-auto mt-3 max-w-[1440px] sm:mt-5">
         <PhoneLink className="call-pulse flex min-h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-blue-700 px-4 text-base font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:min-h-16 sm:text-lg">
@@ -145,15 +146,13 @@ function Hero() {
 
 function TrustBadges() {
   return (
-    <section className="bg-white px-4 py-4 sm:px-7 sm:py-7" aria-label="해냄설비 서비스 약속">
-      <div className="mx-auto grid max-w-3xl grid-cols-3 divide-x divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_24px_rgba(15,23,42,.07)] sm:rounded-3xl">
+    <div className="absolute bottom-2 right-2 z-10 grid grid-cols-3 divide-x divide-slate-200/80 overflow-hidden rounded-xl border border-white/80 bg-white/90 p-1 shadow-lg backdrop-blur-sm sm:bottom-4 sm:right-4 sm:rounded-2xl sm:p-1.5" aria-label="해냄설비 서비스 약속">
         {trustBadges.map(({ src, alt, width, height }, index) => (
-          <div key={src} className="grid min-h-24 place-items-center px-1.5 py-2 sm:min-h-36 sm:px-4 sm:py-3">
-            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" style={{ animationDelay: `${index * 0.35}s` }} className="badge-float block h-auto w-full max-w-28 object-contain drop-shadow-md" />
+          <div key={src} className="grid place-items-center px-0.5 py-0 sm:px-1">
+            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" style={{ animationDelay: `${index * 0.35}s` }} className="badge-float block size-10 object-contain drop-shadow-sm sm:size-14" />
           </div>
         ))}
-      </div>
-    </section>
+    </div>
   )
 }
 
@@ -343,7 +342,6 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <TrustBadges />
         <ServiceGrid />
         <BeforeAfter />
         <PromiseSection />
