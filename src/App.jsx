@@ -138,17 +138,17 @@ function Header() {
 
 function DispatchBoard() {
   return (
-    <section className="dispatch-board mx-auto w-full max-w-md border-t border-amber-300/30 bg-gradient-to-b from-[#10243c] to-[#07182a] px-4 py-4 text-center text-white sm:rounded-b-2xl sm:border sm:border-t-0 sm:border-amber-300/20 sm:px-6 sm:py-5" aria-label="실시간 배차 안내">
-      <div className="mb-2 flex items-center justify-center gap-2">
+    <section className="dispatch-board mx-auto mb-2 w-[calc(100%-1rem)] max-w-md rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center text-slate-800 shadow-sm sm:mb-3 sm:px-5 sm:py-3" aria-label="실시간 배차 안내">
+      <div className="mb-1 flex items-center justify-center gap-1.5">
         <span className="relative flex size-3 shrink-0">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-400 opacity-50" />
+          <span className="relative inline-flex size-3 rounded-full bg-red-500" />
         </span>
-        <span className="text-xs font-bold tracking-wide text-emerald-300 sm:text-sm">실시간 배차 시스템 가동 중</span>
+        <span className="text-[11px] font-bold tracking-wide text-slate-600 sm:text-xs">실시간 배차 시스템 가동 중</span>
       </div>
-      <p className="text-xs font-extrabold tracking-wide text-white/80 sm:text-sm">평균 현장 도착 시간</p>
-      <div className="timer-flash mt-1 inline-flex items-center justify-center rounded-xl border border-amber-200/45 bg-[#061326]/80 px-4 py-2 text-[clamp(2.75rem,14vw,3.65rem)] font-black leading-none tracking-[-.055em] text-[#fff36a] [text-shadow:0_2px_0_#9a5b00,0_0_12px_rgba(255,211,50,.48)] sm:px-7 sm:py-2.5 sm:text-6xl">
-        28분 <span className="px-1 text-white sm:px-2">~</span> 33분
+      <p className="text-[10px] font-bold tracking-wide text-slate-500 sm:text-xs">평균 현장 도착 시간</p>
+      <div className="mt-0.5 text-[clamp(1.5rem,7vw,1.85rem)] font-black leading-tight tracking-tight text-red-600 sm:text-3xl">
+        28분 <span className="px-0.5 text-slate-400 sm:px-1">~</span> 33분
       </div>
     </section>
   )
@@ -158,6 +158,7 @@ function Hero() {
   return (
     <section id="home" className="overflow-hidden bg-[#07182a] px-0 pb-3 pt-2 sm:px-6 sm:pb-8 sm:pt-6">
       <div className="mx-auto max-w-md overflow-hidden bg-[#07182a] shadow-xl sm:max-w-5xl sm:rounded-2xl sm:border sm:border-white/10">
+        <DispatchBoard />
         <div className="overflow-hidden bg-[#07182a]">
           <div className="hero-banner relative">
             <img
@@ -171,7 +172,6 @@ function Hero() {
             />
           </div>
         </div>
-        <DispatchBoard />
       </div>
     </section>
   )
