@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BadgeCheck,
   Check,
   ChevronRight,
   Clock3,
@@ -19,7 +18,7 @@ import { companyInfo, process as workProcess, reviews, services, strengths } fro
 const PHONE_LINK = 'tel:010-4154-0084'
 const KAKAO_LINK = 'https://pf.kakao.com/'
 
-const imageForService = [
+const serviceImages = [
   '/img/service_toilet.png',
   '/img/service_drain.png',
   '/img/service_sink.png',
@@ -28,19 +27,34 @@ const imageForService = [
   '/img/service_pipe.png',
 ]
 
-const imageAltForService = [
+const serviceImageAlts = [
   '변기 막힘과 배수 문제',
   '하수구 막힘과 배관 청소',
   '싱크대 배수와 역류 점검',
-  '첨단 장비를 활용한 누수 탐지',
+  '첨단 장비를 이용한 누수 탐지',
   '수전과 설비 부품 교체',
   '상하수도와 배관 공사',
 ]
 
 const trustBadges = [
-  { src: '/img/badge_quote.png', alt: '투명한 견적 안내', width: 338, height: 339 },
-  { src: '/img/badge_zero.png', alt: '미해결 시 비용 0원', width: 338, height: 339 },
-  { src: '/img/badge_time.png', alt: '시간 예약 가능', width: 338, height: 339 },
+  {
+    src: '/img/badge_quote.png',
+    alt: '투명한 견적 안내',
+    title: '투명한 견적 안내',
+    detail: '정찰제 사전 고지',
+  },
+  {
+    src: '/img/badge_zero.png',
+    alt: '미해결 시 비용 0원',
+    title: '미해결 시 0원',
+    detail: '작업 실패 시 비용 0원',
+  },
+  {
+    src: '/img/badge_time.png',
+    alt: '시간 예약 가능',
+    title: '시간 예약 가능',
+    detail: '24시간 예약 상담',
+  },
 ]
 
 const promises = [
@@ -61,7 +75,7 @@ const promises = [
   },
 ]
 
-const navigation = [
+const navItems = [
   ['서비스', '#services'],
   ['작업 사례', '#work'],
   ['작업 과정', '#process'],
@@ -75,8 +89,8 @@ function PhoneLink({ children, className = '', ...props }) {
 function SectionHeading({ eyebrow, title, description }) {
   return (
     <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-12">
-      <p className="mb-2 text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-700 sm:text-xs">{eyebrow}</p>
-      <h2 className="break-keep text-[clamp(1.55rem,6vw,2.5rem)] font-black leading-tight tracking-[-0.04em] text-slate-900">{title}</h2>
+      <p className="mb-2 text-[11px] font-extrabold uppercase tracking-[.18em] text-blue-700 sm:text-xs">{eyebrow}</p>
+      <h2 className="break-keep text-[clamp(1.55rem,6vw,2.5rem)] font-black leading-tight tracking-[-.04em] text-slate-900">{title}</h2>
       {description && <p className="mx-auto mt-3 max-w-xl break-keep text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base sm:leading-7">{description}</p>}
     </div>
   )
@@ -90,10 +104,10 @@ function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-7">
         <a href="#home" className="inline-flex min-h-12 items-center gap-2.5" aria-label="해냄설비 홈">
           <span className="grid size-9 place-items-center rounded-xl bg-blue-700 text-white sm:size-10"><Droplets size={21} /></span>
-          <span className="text-lg font-black tracking-tight text-slate-900">해냄설비</span>
+          <span className="text-lg font-black tracking-tight text-slate-900">{companyInfo.name}</span>
         </a>
         <nav className="hidden items-center gap-7 md:flex" aria-label="주요 메뉴">
-          {navigation.map(([label, href]) => <a key={href} href={href} className="inline-flex min-h-12 items-center text-sm font-bold text-slate-600 transition hover:text-blue-700">{label}</a>)}
+          {navItems.map(([label, href]) => <a key={href} href={href} className="inline-flex min-h-12 items-center text-sm font-bold text-slate-600 transition hover:text-blue-700">{label}</a>)}
         </nav>
         <PhoneLink className="hidden min-h-12 items-center gap-2 rounded-xl bg-blue-700 px-4 text-sm font-extrabold text-white shadow-sm transition hover:bg-blue-800 md:inline-flex">
           <Phone size={17} /> 전화 상담 <span className="hidden lg:inline">{companyInfo.phone}</span>
@@ -111,7 +125,7 @@ function Header() {
       </div>
       {menuOpen && (
         <nav id="mobile-navigation" className="border-t border-slate-100 bg-white px-4 py-2 md:hidden" aria-label="모바일 메뉴">
-          {navigation.map(([label, href]) => (
+          {navItems.map(([label, href]) => (
             <a key={href} href={href} onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center border-b border-slate-100 px-1 text-sm font-bold text-slate-700 last:border-0">{label}</a>
           ))}
         </nav>
@@ -120,24 +134,37 @@ function Header() {
   )
 }
 
+function DispatchBoard() {
+  return (
+    <section className="dispatch-board mx-auto my-4 w-full max-w-3xl overflow-hidden rounded-2xl border border-amber-400/30 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 px-4 py-5 text-center text-white shadow-2xl shadow-slate-950/20 sm:my-6 sm:rounded-3xl sm:px-7 sm:py-6" aria-label="평균 출동 안내">
+      <div className="mb-2 flex items-center justify-center gap-2">
+        <span className="relative flex size-3 shrink-0">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
+        </span>
+        <span className="text-[10px] font-bold tracking-wide text-emerald-300 sm:text-sm">상담 후 수도권 방문 가능 시간을 안내드립니다</span>
+      </div>
+      <p className="text-xs font-bold text-slate-300 sm:text-base">고객 접수 시 현장 도착 예정 시간</p>
+      <div className="timer-flash py-1 text-[clamp(2rem,10vw,4rem)] font-black leading-tight tracking-tight text-amber-400 drop-shadow-[0_0_24px_rgba(251,191,36,0.55)]">
+        28분 <span className="px-1 text-amber-200 sm:px-2">~</span> 33분
+      </div>
+      <div className="mx-auto mt-2 inline-flex min-h-9 flex-wrap items-center justify-center gap-x-1.5 gap-y-1 rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1.5 text-[10px] font-bold text-amber-100 sm:min-h-10 sm:gap-2 sm:px-4 sm:text-xs">
+        <span aria-hidden="true">⚡</span> 미해결 시 비용 0원 <span className="text-amber-300/60">|</span> 방문 시간 전화 안내
+      </div>
+      <p className="mt-2 text-[10px] leading-4 text-slate-400 sm:text-xs">지역·교통·현장 상황에 따라 도착 시간은 달라질 수 있습니다.</p>
+    </section>
+  )
+}
+
 function Hero() {
   return (
-    <section id="home" className="overflow-hidden bg-slate-50 px-3 py-3 sm:px-6 sm:py-6">
-      <div className="mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
-        <div className="flex min-h-14 items-center justify-between gap-2 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-3 py-2.5 sm:min-h-[76px] sm:px-6 sm:py-3">
-          <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-            <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-700 text-white shadow-sm sm:size-11"><Droplets size={21} /></span>
-            <div className="min-w-0">
-              <p className="truncate text-base font-black tracking-tight text-slate-900 sm:text-xl">해냄설비</p>
-              <p className="hidden text-[10px] font-semibold text-slate-500 sm:block sm:text-xs">막힘부터 누수까지 꼼꼼하게</p>
-            </div>
-          </div>
-          <div className="time-pulse flex shrink-0 items-center gap-1.5 rounded-xl border border-blue-200 bg-white px-2.5 py-1.5 text-blue-800 shadow-sm sm:gap-2.5 sm:rounded-2xl sm:px-4 sm:py-2">
-            <Clock3 className="shrink-0 text-blue-600" size={19} />
-            <span className="leading-tight"><span className="block text-[9px] font-bold text-slate-500 sm:text-[11px]">평균 출동</span><strong className="block whitespace-nowrap text-sm font-black tracking-tight sm:text-lg">28~33분</strong></span>
-          </div>
-        </div>
-        <div className="relative overflow-hidden bg-[#07182a]">
+    <section id="home" className="overflow-hidden bg-slate-50 px-3 pb-7 pt-4 sm:px-6 sm:pb-10 sm:pt-6">
+      <div className="mx-auto max-w-[1440px]">
+        <h1 className="my-3 text-center text-[clamp(1.65rem,7.5vw,3rem)] font-black leading-tight tracking-tight sm:my-5">
+          <span className="brand-sheen drop-shadow-[0_0_18px_rgba(251,191,36,.42)]">해냄설비</span>
+          <span className="ml-1.5 text-slate-900">가 시원하게 뚫어냅니다!</span>
+        </h1>
+        <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-[#07182a] shadow-[0_18px_55px_rgba(15,23,42,.12)] sm:rounded-3xl">
           <img
             src="/img/hero_banner.png"
             alt="역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다! 무료 전화상담 010-4154-0084"
@@ -147,28 +174,31 @@ function Hero() {
             decoding="async"
             className="block h-auto w-full object-contain"
           />
-          <TrustBadges />
         </div>
-      </div>
-      <div className="mx-auto mt-3 max-w-[1440px] sm:mt-5">
-        <PhoneLink className="call-pulse flex min-h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-blue-700 px-4 text-base font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:min-h-16 sm:text-lg">
+        <DispatchBoard />
+        <PhoneLink className="call-pulse flex min-h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 px-4 text-base font-black text-white shadow-lg shadow-blue-900/20 transition hover:brightness-110 sm:min-h-16 sm:text-lg">
           <PhoneCall size={21} /> 무료 전화상담 <span className="whitespace-nowrap">{companyInfo.phone}</span> <ArrowRight size={18} />
         </PhoneLink>
       </div>
-      <h1 className="sr-only">역류하고 막혀서 답답할 땐? 해냄설비가 시원하게 뚫어냅니다!</h1>
     </section>
   )
 }
 
 function TrustBadges() {
   return (
-    <div className="absolute bottom-2 right-2 z-10 grid grid-cols-3 divide-x divide-slate-200/80 overflow-hidden rounded-xl border border-white/80 bg-white/90 p-1 shadow-lg backdrop-blur-sm sm:bottom-4 sm:right-4 sm:rounded-2xl sm:p-1.5" aria-label="해냄설비 서비스 약속">
-        {trustBadges.map(({ src, alt, width, height }, index) => (
-          <div key={src} className="grid place-items-center px-0.5 py-0 sm:px-1">
-            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" style={{ animationDelay: `${index * 0.35}s` }} className="badge-float block size-10 object-contain drop-shadow-sm sm:size-14" />
-          </div>
+    <section className="bg-white px-4 py-10 sm:px-7 sm:py-16" aria-label="해냄설비 서비스 약속">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
+        {trustBadges.map(({ src, alt, title, detail }) => (
+          <article key={src} className="group flex min-h-28 items-center gap-4 rounded-2xl border-2 border-slate-100 bg-white p-3 shadow-md transition-transform hover:scale-[1.03] sm:min-h-52 sm:flex-col sm:justify-center sm:p-4">
+            <img src={src} alt={alt} width="338" height="339" loading="lazy" decoding="async" className="block size-20 shrink-0 object-contain drop-shadow-md sm:size-24" />
+            <div className="min-w-0 sm:text-center">
+              <h2 className="break-keep text-sm font-black text-slate-900 sm:text-base">{title}</h2>
+              <p className="mt-1 break-keep text-xs font-bold text-blue-700 sm:text-sm">{detail}</p>
+            </div>
+          </article>
         ))}
-    </div>
+      </div>
+    </section>
   )
 }
 
@@ -182,15 +212,7 @@ function ServiceGrid() {
             const Icon = service.icon
             return (
               <article key={service.title} className="group min-w-0 overflow-hidden rounded-2xl border border-slate-100 bg-white p-2.5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg sm:rounded-3xl sm:p-4">
-                <img
-                  src={imageForService[index]}
-                  alt={imageAltForService[index]}
-                  width="338"
-                  height="339"
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-square w-full rounded-xl object-contain sm:rounded-2xl"
-                />
+                <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="aspect-square w-full rounded-xl object-contain sm:rounded-2xl" />
                 <div className="flex min-h-12 items-center gap-2 px-1 pt-2 sm:min-h-14 sm:px-2">
                   <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-700 sm:size-9"><Icon size={17} /></span>
                   <h3 className="min-w-0 break-keep text-[13px] font-black leading-5 text-slate-900 sm:text-base">{service.title}</h3>
@@ -308,7 +330,6 @@ function Reviews() {
               <div className="mt-4 flex items-center gap-2 border-t border-slate-100 pt-3 sm:mt-5 sm:pt-4">
                 <span className="grid size-9 place-items-center rounded-full bg-slate-100 text-sm font-black text-slate-600">{review.name.slice(0, 1)}</span>
                 <div><p className="text-xs font-extrabold text-slate-800">{review.name}</p><p className="mt-0.5 text-[10px] text-slate-500">{review.location}</p></div>
-                <BadgeCheck className="ml-auto text-blue-600" size={18} aria-label="고객 후기" />
               </div>
             </article>
           ))}
@@ -340,11 +361,11 @@ function ContactFooter() {
 
 function MobileActionBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex gap-2.5 border-t border-slate-200 bg-white/95 p-2.5 pb-[max(.625rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 flex gap-2 border-t border-slate-200 bg-white/95 p-3 pb-[max(.75rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
       <a href={KAKAO_LINK} target="_blank" rel="noreferrer" className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[#fee500] px-2 text-sm font-black text-[#332d08]" aria-label="카카오톡 문의 열기">
         <MessageCircle size={19} /> 카카오톡 문의
       </a>
-      <PhoneLink className="call-pulse flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-blue-700 px-2 text-sm font-black text-white" aria-label={`전화걸기 ${companyInfo.phone}`}>
+      <PhoneLink className="call-pulse flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-blue-700 px-2 text-sm font-black text-white" aria-label={`전화걸기 ${companyInfo.phone}`}>
         <PhoneCall size={19} /> 전화걸기
       </PhoneLink>
     </div>
@@ -353,11 +374,12 @@ function MobileActionBar() {
 
 export default function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white pb-24 font-sans text-slate-900 md:pb-0">
-      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}@keyframes timePulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.08);transform:translateY(0)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0);transform:translateY(-1px)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.badge-float{animation:badgeFloat 3.2s ease-in-out infinite}.time-pulse{animation:timePulse 2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.badge-float,.time-pulse{animation:none}}`}</style>
+    <div className="min-h-screen overflow-x-hidden bg-white pb-28 font-sans text-slate-900 md:pb-0">
+      <style>{`@keyframes callGlow{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.2),0 8px 22px rgba(30,64,175,.16)}50%{box-shadow:0 0 0 7px rgba(37,99,235,0),0 10px 27px rgba(30,64,175,.22)}}@keyframes callSweep{0%,58%{transform:translateX(-180%) skewX(-22deg);opacity:0}66%{opacity:.55}82%,100%{transform:translateX(420%) skewX(-22deg);opacity:0}}@keyframes metallicSheen{0%,100%{background-position:0% 50%;filter:drop-shadow(0 0 5px rgba(251,191,36,.18))}50%{background-position:100% 50%;filter:drop-shadow(0 0 15px rgba(251,191,36,.55))}}@keyframes timerFlash{0%,100%{opacity:1;text-shadow:0 0 12px rgba(251,191,36,.25),0 0 24px rgba(251,191,36,.28)}50%{opacity:.95;text-shadow:0 0 18px rgba(251,191,36,.62),0 0 36px rgba(251,191,36,.55)}}.call-pulse{position:relative;isolation:isolate;overflow:hidden;animation:callGlow 2.4s ease-out infinite}.call-pulse:before{position:absolute;z-index:0;top:-35%;bottom:-35%;left:0;width:32%;transform:translateX(-180%) skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);content:'';pointer-events:none;animation:callSweep 3.8s ease-in-out infinite}.call-pulse>*{position:relative;z-index:1}.brand-sheen{background-image:linear-gradient(105deg,#b77908 5%,#fde68a 28%,#f59e0b 44%,#fff7cc 52%,#d89406 65%,#fbbf24 90%);background-size:220% 100%;background-clip:text;color:transparent;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:metallicSheen 3s ease-in-out infinite}.timer-flash{animation:timerFlash 1.8s ease-in-out infinite}.dispatch-board{backdrop-filter:blur(12px)}@media(prefers-reduced-motion:reduce){.call-pulse,.call-pulse:before,.brand-sheen,.timer-flash{animation:none}}`}</style>
       <Header />
       <main>
         <Hero />
+        <TrustBadges />
         <ServiceGrid />
         <BeforeAfter />
         <PromiseSection />
