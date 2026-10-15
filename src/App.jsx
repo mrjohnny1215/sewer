@@ -5,6 +5,7 @@ import {
   Droplets,
   FileCheck2,
   Menu,
+  MessageCircle,
   Phone,
   PhoneCall,
   ShieldCheck,
