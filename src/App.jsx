@@ -44,9 +44,9 @@ const serviceSummaries = [
 ]
 
 const workCases = [
-  { before: '/img/work-example-drain-before.png', after: '/img/work-example-drain-after.png', title: '하수구 배관 세척' },
-  { before: '/img/work-example-sink-before.png', after: '/img/work-example-sink-after.png', title: '싱크대 배수관 청소' },
-  { before: '/img/work-example-bathroom-before.png', after: '/img/work-example-bathroom-after.png', title: '욕실 배수구 정리' },
+  { before: '/img/work-example-drain-before.png', after: '/img/work-example-drain-after.png', title: '하수구 배관 세척', beforeLabel: '하수구 배관 막힘', afterLabel: '하수구 배관 세척' },
+  { before: '/img/work-example-sink-before.png', after: '/img/work-example-sink-after.png', title: '싱크대 배수관 청소', beforeLabel: '싱크대 배수 막힘', afterLabel: '싱크대 배수관 청소' },
+  { before: '/img/work-example-bathroom-before.png', after: '/img/work-example-bathroom-after.png', title: '욕실 배수구 정리', beforeLabel: '욕실 배수구 막힘', afterLabel: '욕실 배수구 청소' },
 ]
 
 const processImages = [
@@ -225,19 +225,16 @@ function BeforeAfter() {
           </div>
         </div>
         <div className="mt-3 grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
-            {workCases.map(({ before, after, title }) => (
+            {workCases.map(({ before, after, title, beforeLabel, afterLabel }) => (
               <figure key={title} className="overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
                 <div className="grid grid-cols-2 divide-x divide-white">
-                  <div className="relative">
-                    <img src={before} alt={`${title} 작업 전 예시`} width="760" height="329" loading="lazy" decoding="async" className="block aspect-[2.3] w-full object-cover" />
-                    <span className="absolute left-2 top-2 rounded-md bg-rose-600 px-2 py-1 text-[10px] font-black text-white shadow sm:text-xs">작업 전</span>
-                  </div>
-                  <div className="relative">
-                    <img src={after} alt={`${title} 작업 후 예시`} width="760" height="329" loading="lazy" decoding="async" className="block aspect-[2.3] w-full object-cover" />
-                    <span className="absolute left-2 top-2 rounded-md bg-blue-600 px-2 py-1 text-[10px] font-black text-white shadow sm:text-xs">작업 후</span>
-                  </div>
+                  <img src={before} alt={`${beforeLabel} 작업 전 예시`} width="760" height="760" loading="lazy" decoding="async" className="block aspect-square w-full object-cover" />
+                  <img src={after} alt={`${afterLabel} 작업 후 예시`} width="760" height="760" loading="lazy" decoding="async" className="block aspect-square w-full object-cover" />
                 </div>
-                <figcaption className="border-t border-slate-100 px-3 py-2.5 text-sm font-extrabold text-slate-800 sm:px-4">해냄설비 · {title}</figcaption>
+                <figcaption className="grid grid-cols-2 gap-2 border-t border-slate-100 p-2">
+                  <span className="flex min-h-11 items-center justify-center break-keep rounded-lg bg-rose-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-rose-700 sm:text-xs">BEFORE · {beforeLabel}</span>
+                  <span className="flex min-h-11 items-center justify-center break-keep rounded-lg bg-blue-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-blue-700 sm:text-xs">AFTER · {afterLabel}</span>
+                </figcaption>
               </figure>
             ))}
         </div>
