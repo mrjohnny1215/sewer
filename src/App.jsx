@@ -43,11 +43,10 @@ const serviceSummaries = [
   '상하수도 배관과 방수 상태를 점검합니다.',
 ]
 
-const workPhotos = [
-  { src: '/img/process_intake.png', alt: '고객과 배관 문제를 전화로 상담하는 모습', caption: '증상과 방문 일정 상담' },
-  { src: '/img/process_inspection.png', alt: '배관 내시경 장비로 막힘 원인을 점검하는 모습', caption: '배관 내시경 점검' },
-  { src: '/img/process_estimate.png', alt: '내시경 점검 화면을 보며 작업 범위를 안내하는 모습', caption: '점검 결과와 작업 범위 안내' },
-  { src: '/img/process_completion.png', alt: '변기 배관 작업 후 물 내림 상태를 확인하는 모습', caption: '작업 후 배수 상태 확인' },
+const workCases = [
+  { before: '/img/work-example-drain-before.png', after: '/img/work-example-drain-after.png', title: '하수구 배관 세척' },
+  { before: '/img/work-example-sink-before.png', after: '/img/work-example-sink-after.png', title: '싱크대 배수관 청소' },
+  { before: '/img/work-example-bathroom-before.png', after: '/img/work-example-bathroom-after.png', title: '욕실 배수구 정리' },
 ]
 
 const processTitles = ['상담 접수', '현장 점검', '견적 안내 및 동의', '작업 후 상태 확인']
@@ -206,14 +205,26 @@ function BeforeAfter() {
           </figcaption>
         </figure>
         <div className="mt-7 sm:mt-9">
-          <h3 className="mb-3 text-lg font-black tracking-tight text-slate-900 sm:mb-4 sm:text-xl">현장 작업 사진</h3>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {workPhotos.map(({ src, alt, caption }) => (
-            <figure key={src} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
-              <img src={src} alt={alt} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.35] w-full object-cover" />
-              <figcaption className="flex min-h-11 items-center px-2.5 py-2 text-xs font-extrabold leading-4 text-slate-800 sm:min-h-12 sm:px-3 sm:text-sm">{caption}</figcaption>
-            </figure>
-          ))}
+          <div className="mb-3 flex flex-wrap items-end justify-between gap-x-3 gap-y-1 sm:mb-4">
+            <h3 className="text-lg font-black tracking-tight text-slate-900 sm:text-xl">배관 유형별 작업 전·후 예시</h3>
+            <p className="text-[10px] font-medium text-slate-500 sm:text-xs">예시 이미지 · 실제 결과는 현장 상태에 따라 다를 수 있습니다.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
+            {workCases.map(({ before, after, title }) => (
+              <figure key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="grid grid-cols-2 divide-x divide-white">
+                  <div className="relative">
+                    <img src={before} alt={`${title} 작업 전 예시`} width="760" height="329" loading="lazy" decoding="async" className="block aspect-[2.3] w-full object-cover" />
+                    <span className="absolute left-2 top-2 rounded-md bg-rose-600 px-2 py-1 text-[10px] font-black text-white shadow sm:text-xs">작업 전</span>
+                  </div>
+                  <div className="relative">
+                    <img src={after} alt={`${title} 작업 후 예시`} width="760" height="329" loading="lazy" decoding="async" className="block aspect-[2.3] w-full object-cover" />
+                    <span className="absolute left-2 top-2 rounded-md bg-blue-600 px-2 py-1 text-[10px] font-black text-white shadow sm:text-xs">작업 후</span>
+                  </div>
+                </div>
+                <figcaption className="px-3 py-2.5 text-sm font-extrabold text-slate-800 sm:px-4">{title}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </div>
