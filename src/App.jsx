@@ -210,42 +210,23 @@ function BeforeAfter() {
   return (
     <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-5xl">
-        <SectionHeading eyebrow="작업 전 · 작업 후 비교" title="막힌 배관, 달라진 흐름" description="작업 전후 배관 상태를 한눈에 비교해보세요." />
+        <SectionHeading eyebrow="해냄설비 작업 사례" title="작업 전·후 비교" description="막힘 원인을 점검하고 작업 후 배수 상태까지 확인합니다." />
         <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm sm:rounded-3xl">
           <img src="/img/before_after.png" alt="배관 세척 전 오염된 상태와 작업 후 깨끗해진 상태 비교" width="2048" height="1024" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
           <figcaption className="grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5">
-            <span className="flex min-h-12 items-center justify-center rounded-xl bg-rose-50 text-sm font-black text-rose-700">작업 전 · 막힘 확인</span>
-            <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">작업 후 · 배수 확인</span>
+            <span className="flex min-h-12 items-center justify-center rounded-xl bg-rose-50 text-sm font-black text-rose-700">BEFORE · 배관 막힘</span>
+            <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">AFTER · 배수 개선</span>
           </figcaption>
         </figure>
-        <div className="mt-7 sm:mt-9">
-          <h3 className="mb-1 text-lg font-black tracking-tight text-slate-900 sm:text-xl">현장 작업 사진</h3>
-          <p className="mb-3 text-xs leading-5 text-slate-600 sm:mb-4 sm:text-sm">상담부터 배관 점검과 작업 후 확인까지 과정을 살펴보세요.</p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            {processImages.map((src, index) => (
-              <figure key={src} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
-                <img src={src} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.45] w-full object-cover" />
-                <figcaption className="p-2.5 sm:p-3">
-                  <h4 className="text-xs font-extrabold leading-4 text-slate-900 sm:text-sm">{processTitles[index]}</h4>
-                  <p className="mt-1 text-[10px] leading-4 text-slate-600 sm:text-xs">{[
-                    '증상과 주소, 방문 가능한 시간을 확인합니다.',
-                    '내시경 장비로 배관 내부와 막힘 원인을 살펴봅니다.',
-                    '점검 결과를 설명하고 작업 범위와 비용을 안내합니다.',
-                    '작업을 마친 뒤 물이 잘 빠지는지 확인합니다.',
-                  ][index]}</p>
-                </figcaption>
-              </figure>
-            ))}
+        <div className="mt-5 rounded-xl bg-blue-50 px-3 py-2.5 sm:mt-6 sm:px-4">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+            <h3 className="text-sm font-black text-blue-950 sm:text-base">배관 유형별 비교 이미지</h3>
+            <p className="text-[10px] font-medium text-slate-600 sm:text-xs">작업 상태를 설명하기 위한 예시 이미지입니다.</p>
           </div>
         </div>
-        <div className="mt-7 sm:mt-9">
-          <div className="mb-3 flex flex-wrap items-end justify-between gap-x-3 gap-y-1 sm:mb-4">
-            <h3 className="text-lg font-black tracking-tight text-slate-900 sm:text-xl">배관 유형별 작업 전·후 예시</h3>
-            <p className="text-[10px] font-medium text-slate-500 sm:text-xs">예시 이미지 · 실제 결과는 현장 상태에 따라 다를 수 있습니다.</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
             {workCases.map(({ before, after, title }) => (
-              <figure key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <figure key={title} className="overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
                 <div className="grid grid-cols-2 divide-x divide-white">
                   <div className="relative">
                     <img src={before} alt={`${title} 작업 전 예시`} width="760" height="329" loading="lazy" decoding="async" className="block aspect-[2.3] w-full object-cover" />
@@ -256,10 +237,9 @@ function BeforeAfter() {
                     <span className="absolute left-2 top-2 rounded-md bg-blue-600 px-2 py-1 text-[10px] font-black text-white shadow sm:text-xs">작업 후</span>
                   </div>
                 </div>
-                <figcaption className="px-3 py-2.5 text-sm font-extrabold text-slate-800 sm:px-4">{title}</figcaption>
+                <figcaption className="border-t border-slate-100 px-3 py-2.5 text-sm font-extrabold text-slate-800 sm:px-4">해냄설비 · {title}</figcaption>
               </figure>
             ))}
-          </div>
         </div>
       </div>
     </section>
@@ -311,6 +291,9 @@ function ProcessSection() {
               </div>
               <h3 className="min-h-10 break-keep text-[15px] font-black leading-5 text-slate-900 sm:min-h-12 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
               <p className="mt-1 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl bg-slate-100 sm:mt-3 sm:rounded-2xl">
+                <img src={processImages[index]} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+              </div>
             </article>
           ))}
         </div>
