@@ -43,18 +43,10 @@ const serviceSummaries = [
   '상하수도 배관과 방수 상태를 점검합니다.',
 ]
 
-const processImages = [
-  '/img/process_intake.png',
-  '/img/process_inspection.png',
-  '/img/process_estimate.png',
-  '/img/process_completion.png',
-]
-
-const processImageAlts = [
-  '배관 문제 상담 접수',
-  '배관 내시경 장비로 현장 점검',
-  '작업 범위와 견적 안내',
-  '변기 배관 작업 후 상태 확인',
+const workPhotos = [
+  { src: '/img/process_inspection.png', alt: '배관 내시경 장비로 막힘 원인을 점검하는 모습', caption: '배관 내시경 점검' },
+  { src: '/img/process_estimate.png', alt: '내시경 점검 화면을 보며 작업 범위를 안내하는 모습', caption: '점검 결과와 작업 범위 안내' },
+  { src: '/img/process_completion.png', alt: '변기 배관 작업 후 물 내림 상태를 확인하는 모습', caption: '작업 후 배수 상태 확인' },
 ]
 
 const processTitles = ['상담 접수', '현장 점검', '견적 안내 및 동의', '작업 후 상태 확인']
@@ -200,6 +192,26 @@ function ServiceGrid() {
   )
 }
 
+function FieldTeamBanner() {
+  return (
+    <section aria-label="해냄설비 현장 출동 안내" className="bg-white px-4 py-5 sm:px-7 sm:py-8">
+      <figure className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-slate-100 shadow-sm sm:rounded-3xl">
+        <img src="/img/field-team-banner.jpg" alt="해냄설비 현장 차량과 작업자가 안내하는 배관 설비 서비스" width="1024" height="576" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
+      </figure>
+    </section>
+  )
+}
+
+function ServiceNetworkPromo() {
+  return (
+    <section aria-label="해냄설비 서비스와 안내" className="bg-sky-50 px-4 py-12 sm:px-7 sm:py-16">
+      <figure className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-sm sm:rounded-3xl">
+        <img src="/img/service-network-promo.jpg" alt="해냄설비 서비스 안내와 업체 비교, 무료 견적 문의 안내" width="576" height="1024" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
+      </figure>
+    </section>
+  )
+}
+
 function BeforeAfter() {
   return (
     <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
@@ -212,6 +224,24 @@ function BeforeAfter() {
             <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">작업 후 · 배수 확인</span>
           </figcaption>
         </figure>
+      </div>
+    </section>
+  )
+}
+
+function WorkGallery() {
+  return (
+    <section aria-label="현장 작업 사진" className="bg-slate-50 px-4 py-9 sm:px-7 sm:py-14">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow="현장 작업 사진" title="점검부터 마무리까지" description="배관을 살피고 작업 후 상태를 확인하는 과정을 사진으로 확인해보세요." />
+        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+          {workPhotos.map(({ src, alt, caption }) => (
+            <figure key={src} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm sm:rounded-3xl">
+              <img src={src} alt={alt} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.45] w-full object-cover" />
+              <figcaption className="flex min-h-12 items-center px-3 py-2 text-sm font-extrabold text-slate-800 sm:min-h-14 sm:px-4">{caption}</figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -262,9 +292,6 @@ function ProcessSection() {
               </div>
               <h3 className="min-h-10 break-keep text-[15px] font-black leading-5 text-slate-900 sm:min-h-12 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
               <p className="mt-1 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
-              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl bg-slate-100 sm:mt-3 sm:rounded-2xl">
-                <img src={processImages[index]} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
-              </div>
             </article>
           ))}
         </div>
@@ -378,11 +405,14 @@ export default function App() {
       <main>
         <Hero />
         <ServiceGrid />
+        <FieldTeamBanner />
         <BeforeAfter />
+        <WorkGallery />
         <PromiseSection />
         <ProcessSection />
         <StrengthSection />
         <Reviews />
+        <ServiceNetworkPromo />
         <ContactFooter />
       </main>
       <MobileActionBar />
