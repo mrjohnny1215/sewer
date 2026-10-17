@@ -192,26 +192,6 @@ function ServiceGrid() {
   )
 }
 
-function FieldTeamBanner() {
-  return (
-    <section aria-label="해냄설비 현장 출동 안내" className="bg-white px-4 py-5 sm:px-7 sm:py-8">
-      <figure className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-slate-100 shadow-sm sm:rounded-3xl">
-        <img src="/img/field-team-banner.jpg" alt="해냄설비 현장 차량과 작업자가 안내하는 배관 설비 서비스" width="1024" height="576" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
-      </figure>
-    </section>
-  )
-}
-
-function ServiceNetworkPromo() {
-  return (
-    <section aria-label="해냄설비 서비스와 안내" className="bg-sky-50 px-4 py-12 sm:px-7 sm:py-16">
-      <figure className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-sm sm:rounded-3xl">
-        <img src="/img/service-network-promo.jpg" alt="해냄설비 서비스 안내와 업체 비교, 무료 견적 문의 안내" width="576" height="1024" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
-      </figure>
-    </section>
-  )
-}
-
 function BeforeAfter() {
   return (
     <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
@@ -405,14 +385,12 @@ export default function App() {
       <main>
         <Hero />
         <ServiceGrid />
-        <FieldTeamBanner />
         <BeforeAfter />
         <WorkGallery />
         <PromiseSection />
         <ProcessSection />
         <StrengthSection />
         <Reviews />
-        <ServiceNetworkPromo />
         <ContactFooter />
       </main>
       <MobileActionBar />
