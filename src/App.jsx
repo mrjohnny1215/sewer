@@ -49,6 +49,20 @@ const workCases = [
   { before: '/img/work-example-bathroom-before.png', after: '/img/work-example-bathroom-after.png', title: '욕실 배수구 정리' },
 ]
 
+const processImages = [
+  '/img/process_intake.png',
+  '/img/process_inspection.png',
+  '/img/process_estimate.png',
+  '/img/process_completion.png',
+]
+
+const processImageAlts = [
+  '고객과 배관 문제를 전화로 상담하는 모습',
+  '배관 내시경 장비로 막힘 원인을 점검하는 모습',
+  '점검 화면을 보며 작업 범위와 비용을 안내하는 모습',
+  '작업 후 변기 배수 상태를 확인하는 모습',
+]
+
 const processTitles = ['상담 접수', '현장 점검', '견적 안내 및 동의', '작업 후 상태 확인']
 
 const promises = [
@@ -277,6 +291,9 @@ function ProcessSection() {
               </div>
               <h3 className="min-h-10 break-keep text-[15px] font-black leading-5 text-slate-900 sm:min-h-12 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
               <p className="mt-1 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
+              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl bg-slate-100 sm:mt-3 sm:rounded-2xl">
+                <img src={processImages[index]} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+              </div>
             </article>
           ))}
         </div>
