@@ -218,13 +218,7 @@ function BeforeAfter() {
             <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">AFTER · 배수 개선</span>
           </figcaption>
         </figure>
-        <div className="mt-5 rounded-xl bg-blue-50 px-3 py-2.5 sm:mt-6 sm:px-4">
-          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-            <h3 className="text-sm font-black text-blue-950 sm:text-base">배관 유형별 비교 이미지</h3>
-            <p className="text-[10px] font-medium text-slate-600 sm:text-xs">작업 상태를 설명하기 위한 예시 이미지입니다.</p>
-          </div>
-        </div>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
+        <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
             {workCases.map(({ before, after, title, beforeLabel, afterLabel }) => (
               <figure key={title} className="overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
                 <div className="grid grid-cols-2 divide-x divide-white">
