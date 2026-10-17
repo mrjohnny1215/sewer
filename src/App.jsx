@@ -44,6 +44,7 @@ const serviceSummaries = [
 ]
 
 const workPhotos = [
+  { src: '/img/process_intake.png', alt: '고객과 배관 문제를 전화로 상담하는 모습', caption: '증상과 방문 일정 상담' },
   { src: '/img/process_inspection.png', alt: '배관 내시경 장비로 막힘 원인을 점검하는 모습', caption: '배관 내시경 점검' },
   { src: '/img/process_estimate.png', alt: '내시경 점검 화면을 보며 작업 범위를 안내하는 모습', caption: '점검 결과와 작업 범위 안내' },
   { src: '/img/process_completion.png', alt: '변기 배관 작업 후 물 내림 상태를 확인하는 모습', caption: '작업 후 배수 상태 확인' },
@@ -204,23 +205,16 @@ function BeforeAfter() {
             <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">작업 후 · 배수 확인</span>
           </figcaption>
         </figure>
-      </div>
-    </section>
-  )
-}
-
-function WorkGallery() {
-  return (
-    <section aria-label="현장 작업 사진" className="bg-slate-50 px-4 py-9 sm:px-7 sm:py-14">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeading eyebrow="현장 작업 사진" title="점검부터 마무리까지" description="배관을 살피고 작업 후 상태를 확인하는 과정을 사진으로 확인해보세요." />
-        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+        <div className="mt-7 sm:mt-9">
+          <h3 className="mb-3 text-lg font-black tracking-tight text-slate-900 sm:mb-4 sm:text-xl">현장 작업 사진</h3>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {workPhotos.map(({ src, alt, caption }) => (
-            <figure key={src} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm sm:rounded-3xl">
-              <img src={src} alt={alt} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.45] w-full object-cover" />
-              <figcaption className="flex min-h-12 items-center px-3 py-2 text-sm font-extrabold text-slate-800 sm:min-h-14 sm:px-4">{caption}</figcaption>
+            <figure key={src} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
+              <img src={src} alt={alt} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.35] w-full object-cover" />
+              <figcaption className="flex min-h-11 items-center px-2.5 py-2 text-xs font-extrabold leading-4 text-slate-800 sm:min-h-12 sm:px-3 sm:text-sm">{caption}</figcaption>
             </figure>
           ))}
+          </div>
         </div>
       </div>
     </section>
@@ -386,7 +380,6 @@ export default function App() {
         <Hero />
         <ServiceGrid />
         <BeforeAfter />
-        <WorkGallery />
         <PromiseSection />
         <ProcessSection />
         <StrengthSection />
