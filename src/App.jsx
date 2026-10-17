@@ -219,6 +219,26 @@ function BeforeAfter() {
           </figcaption>
         </figure>
         <div className="mt-7 sm:mt-9">
+          <h3 className="mb-1 text-lg font-black tracking-tight text-slate-900 sm:text-xl">현장 작업 사진</h3>
+          <p className="mb-3 text-xs leading-5 text-slate-600 sm:mb-4 sm:text-sm">상담부터 배관 점검과 작업 후 확인까지 과정을 살펴보세요.</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            {processImages.map((src, index) => (
+              <figure key={src} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
+                <img src={src} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block aspect-[1.45] w-full object-cover" />
+                <figcaption className="p-2.5 sm:p-3">
+                  <h4 className="text-xs font-extrabold leading-4 text-slate-900 sm:text-sm">{processTitles[index]}</h4>
+                  <p className="mt-1 text-[10px] leading-4 text-slate-600 sm:text-xs">{[
+                    '증상과 주소, 방문 가능한 시간을 확인합니다.',
+                    '내시경 장비로 배관 내부와 막힘 원인을 살펴봅니다.',
+                    '점검 결과를 설명하고 작업 범위와 비용을 안내합니다.',
+                    '작업을 마친 뒤 물이 잘 빠지는지 확인합니다.',
+                  ][index]}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+        <div className="mt-7 sm:mt-9">
           <div className="mb-3 flex flex-wrap items-end justify-between gap-x-3 gap-y-1 sm:mb-4">
             <h3 className="text-lg font-black tracking-tight text-slate-900 sm:text-xl">배관 유형별 작업 전·후 예시</h3>
             <p className="text-[10px] font-medium text-slate-500 sm:text-xs">예시 이미지 · 실제 결과는 현장 상태에 따라 다를 수 있습니다.</p>
@@ -291,9 +311,6 @@ function ProcessSection() {
               </div>
               <h3 className="min-h-10 break-keep text-[15px] font-black leading-5 text-slate-900 sm:min-h-12 sm:text-lg sm:leading-6">{processTitles[index] || title}</h3>
               <p className="mt-1 min-h-10 break-keep text-[11px] leading-[1.55] text-slate-600 sm:min-h-12 sm:text-sm sm:leading-6">{Array.isArray(desc) ? desc.join(' ') : desc}</p>
-              <div className="mt-2.5 aspect-[1.55] overflow-hidden rounded-xl bg-slate-100 sm:mt-3 sm:rounded-2xl">
-                <img src={processImages[index]} alt={processImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
-              </div>
             </article>
           ))}
         </div>
