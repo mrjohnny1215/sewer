@@ -211,19 +211,25 @@ function BeforeAfter() {
     <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <SectionHeading eyebrow="해냄설비 작업 사례" title="작업 전·후 비교" description="막힘 원인을 점검하고 작업 후 배수 상태까지 확인합니다." />
-        <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
-            {workCases.map(({ before, after, title, beforeLabel, afterLabel }) => (
-              <figure key={title} className="overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
-                <div className="grid grid-cols-2 divide-x divide-white">
-                  <img src={before} alt={`${beforeLabel} 작업 전 예시`} width="760" height="760" loading="lazy" decoding="async" className="block aspect-square w-full object-cover" />
-                  <img src={after} alt={`${afterLabel} 작업 후 예시`} width="760" height="760" loading="lazy" decoding="async" className="block aspect-square w-full object-cover" />
+        <div className="mx-auto mt-5 grid max-w-lg gap-4 sm:mt-6 sm:gap-5">
+          {workCases.map(({ before, after, title, beforeLabel, afterLabel }) => (
+            <figure key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm sm:rounded-3xl sm:p-2">
+              <div className="grid grid-cols-2 overflow-hidden rounded-xl bg-slate-200">
+                <div className="relative aspect-square border-r-2 border-slate-300">
+                  <img src={before} alt={`${beforeLabel} 작업 전 예시`} width="760" height="760" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+                  <span className="absolute left-2 top-2 rounded-md bg-red-600 px-2 py-1 text-xs font-black text-white shadow sm:text-sm">BEFORE</span>
                 </div>
-                <figcaption className="grid grid-cols-2 gap-2 border-t border-slate-100 p-2">
-                  <span className="flex min-h-11 items-center justify-center break-keep rounded-lg bg-rose-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-rose-700 sm:text-xs">BEFORE · {beforeLabel}</span>
-                  <span className="flex min-h-11 items-center justify-center break-keep rounded-lg bg-blue-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-blue-700 sm:text-xs">AFTER · {afterLabel}</span>
-                </figcaption>
-              </figure>
-            ))}
+                <div className="relative aspect-square">
+                  <img src={after} alt={`${afterLabel} 작업 후 예시`} width="760" height="760" loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+                  <span className="absolute right-2 top-2 rounded-md bg-sky-600 px-2 py-1 text-xs font-black text-white shadow sm:text-sm">AFTER</span>
+                </div>
+              </div>
+              <figcaption className="grid grid-cols-2 gap-2 px-1.5 pb-1 pt-2 sm:gap-3 sm:px-2 sm:pb-2 sm:pt-3">
+                <span className="flex min-h-11 items-center justify-center break-keep rounded-xl bg-rose-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-rose-700 sm:min-h-12 sm:text-sm">BEFORE · {beforeLabel}</span>
+                <span className="flex min-h-11 items-center justify-center break-keep rounded-xl bg-blue-50 px-1.5 py-2 text-center text-[10px] font-black leading-tight text-blue-700 sm:min-h-12 sm:text-sm">AFTER · {afterLabel}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
