@@ -211,13 +211,6 @@ function BeforeAfter() {
     <section id="work" className="scroll-mt-20 bg-white px-4 py-9 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <SectionHeading eyebrow="해냄설비 작업 사례" title="작업 전·후 비교" description="막힘 원인을 점검하고 작업 후 배수 상태까지 확인합니다." />
-        <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm sm:rounded-3xl">
-          <img src="/img/before_after.png" alt="배관 세척 전 오염된 상태와 작업 후 깨끗해진 상태 비교" width="2048" height="1024" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
-          <figcaption className="grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5">
-            <span className="flex min-h-12 items-center justify-center rounded-xl bg-rose-50 text-sm font-black text-rose-700">BEFORE · 배관 막힘</span>
-            <span className="flex min-h-12 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-700">AFTER · 배수 개선</span>
-          </figcaption>
-        </figure>
         <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
             {workCases.map(({ before, after, title, beforeLabel, afterLabel }) => (
               <figure key={title} className="overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
