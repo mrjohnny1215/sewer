@@ -398,10 +398,8 @@ export default function App() {
         <Hero />
         <ServiceGrid />
         <BeforeAfter />
-        <section aria-label="해냄설비 배관 업체 비교 안내" className="bg-sky-50 px-4 py-7 sm:px-7 sm:py-10">
-          <div className="mx-auto max-w-md overflow-hidden rounded-3xl shadow-lg ring-1 ring-blue-900/10">
-            <img src="/img/comparison-promo.png" alt="우리 동네 배관 업체 비교, 한눈에 업체 비교와 막힘 해결을 안내하는 해냄설비 홍보 이미지" width="572" height="1024" loading="lazy" decoding="async" className="block h-auto w-full" />
-          </div>
+        <section aria-label="해냄설비 배관 업체 비교 안내" className="w-full overflow-hidden bg-sky-50">
+          <img src="/img/comparison-promo.png" alt="우리 동네 배관 업체 비교, 한눈에 업체 비교와 막힘 해결을 안내하는 해냄설비 홍보 이미지" width="572" height="1024" loading="lazy" decoding="async" className="block h-auto w-full" />
         </section>
         <PromiseSection />
         <ProcessSection />
