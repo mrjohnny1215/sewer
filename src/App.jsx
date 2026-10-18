@@ -17,21 +17,21 @@ import { companyInfo, process as workProcess, reviews, services, strengths } fro
 const PHONE_LINK = 'tel:010-4154-0084'
 
 const serviceImages = [
-  '/img/service_toilet.png',
-  '/img/service_drain.png',
-  '/img/service_sink.png',
-  '/img/service_leak.png',
-  '/img/service_faucet.png',
-  '/img/service_pipe.png',
+  '/img/process_completion.png',
+  '/img/work-example-drain-before.png',
+  '/img/work-example-sink-before.png',
+  '/img/process_inspection.png',
+  '/img/process_estimate.png',
+  '/img/work-example-bathroom-before.png',
 ]
 
 const serviceImageAlts = [
-  '변기 막힘과 배수 문제',
-  '하수구 막힘과 배관 청소',
-  '싱크대 배수와 역류 점검',
-  '첨단 장비를 이용한 누수 탐지',
-  '수전과 설비 부품 교체',
-  '상하수도와 배관 공사',
+  '변기 배수 상태를 확인하는 현장 작업 사진',
+  '하수구 배관 막힘 현장 사진',
+  '싱크대 배수구 오염 상태 사진',
+  '배관 내시경 장비로 점검하는 모습',
+  '점검 결과를 확인하며 상담하는 모습',
+  '바닥 배수구 배관 상태 사진',
 ]
 
 const serviceSummaries = [
@@ -196,7 +196,7 @@ function ServiceGrid() {
                 <span className="block break-keep text-[15px] font-black leading-5 text-slate-900 sm:text-base">{service.title}</span>
                 <span className="mt-1 block break-keep text-[11px] leading-[1.45] text-slate-600 sm:text-xs">{serviceSummaries[index]}</span>
               </span>
-              <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="338" height="339" loading="lazy" decoding="async" className="h-[62px] w-[82px] shrink-0 rounded-xl border border-slate-100 bg-white object-contain p-0.5 sm:h-[78px] sm:w-[102px]" />
+              <img src={serviceImages[index]} alt={serviceImageAlts[index]} width="764" height="508" loading="lazy" decoding="async" className="h-[72px] w-[100px] shrink-0 rounded-xl border border-slate-100 object-cover sm:h-[86px] sm:w-[120px]" />
             </article>
           ))}
         </div>
